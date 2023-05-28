@@ -38,18 +38,8 @@ class ExperimentationZone:
         self.data[19] = self.data[19].replace(['A201', 'A202'], [0, 1])
         self.data[20] = self.data[20].replace([1, 2], [0, 1])
 
-
-def data_preprocessing():
-    print('Data_Preprocessing')
-
-
-def data_transformation():
-    print('Data_Transformation')
-
-
-def feature_engineering():
-    print('Feature_Engineering')
-
+    def feature_engineering(self):
+        pass
 
 if __name__ == '__main__':
     ExperimentationZone()
