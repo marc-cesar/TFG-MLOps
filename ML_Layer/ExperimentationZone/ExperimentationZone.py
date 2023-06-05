@@ -2,13 +2,22 @@
 # Here the data should be loaded, pre-processed, transformed and some feature engineering should be made
 # Then it should call the production zone tests
 import pandas as pd
+from ModelTrainingEvaluationService.TrainingEvaluationService import TrainingEvaluationService
 
 
 class ExperimentationZone:
     data = []
+    model = pd.DataFrame()
 
     def __init__(self):
-        pass
+        self.data_collection()
+        self.data_preprocessing()
+        self.data_transformation()
+        self.feature_engineering()
+        self.model = TrainingEvaluationService(self.data).get_model()
+
+    def get_data(self):
+        return self.model
 
     def experimentation_zone(self):
         self.data_collection()
@@ -17,7 +26,9 @@ class ExperimentationZone:
         self.data = pd.read_csv("C:/Users/usuario/Downloads/german.data", delimiter=' ', header=None)
 
     def data_preprocessing(self):
-        pass  # Here the data should be checked if nulls
+        # Drops all the rows with null values
+        if self.data.isnull().values.any():
+            self.data = self.data.dropna()
 
     def data_transformation(self):
         # Replaces all categorical values by natural numbers
@@ -39,7 +50,11 @@ class ExperimentationZone:
         self.data[20] = self.data[20].replace([1, 2], [0, 1])
 
     def feature_engineering(self):
+        # Make some column joins
         pass
 
+
 if __name__ == '__main__':
-    ExperimentationZone()
+    exp = ExperimentationZone()
+    exp.get_data()
+    # Here we should call the Training Evaluation Service
