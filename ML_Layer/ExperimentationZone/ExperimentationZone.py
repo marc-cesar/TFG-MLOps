@@ -2,6 +2,9 @@
 # Here the data should be loaded, pre-processed, transformed and some feature engineering should be made
 # Then it should call the production zone tests
 import pandas as pd
+from flask import request
+import requests
+
 from ModelTrainingEvaluationService.TrainingEvaluationService import TrainingEvaluationService
 
 
@@ -53,8 +56,7 @@ class ExperimentationZone:
         # Make some column joins
         pass
 
-
-if __name__ == '__main__':
-    exp = ExperimentationZone()
-    exp.get_data()
-    # Here we should call the Training Evaluation Service
+    def deploy_model(self):
+        # Deploy the model in the modelScoringService
+        response = requests.post("/NewModel", json={"model": self.model})
+        pass
