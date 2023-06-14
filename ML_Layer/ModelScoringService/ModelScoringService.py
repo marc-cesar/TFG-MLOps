@@ -7,19 +7,11 @@ import joblib
 
 modelScoringService_endpoint = Blueprint('modelScoringService_endpoint', __name__, template_folder='templates')
 
-model = pd.DataFrame()
-
-
-@modelScoringService_endpoint.route('/NewModel', methods=['POST'])
-def new_model():
-    content = request.json
-    model = content['model']
-    joblib.dump(model, 'model.pkl')
-
 
 @modelScoringService_endpoint.route('/Predict', methods=['GET'])
 def predict():
-    model = joblib.load('model.pkl')
-    # GetRow
-    r = request.json
-    return "Perfect!"
+    with open("MachineLearningModel.pkl", 'rb') as file:
+        model = joblib.load(file)
+    data = request.get_json()
+    return model.predict(data)
+

@@ -5,6 +5,8 @@ import pandas as pd
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from ModelScoringService import ModelScoringService
+import pickle
 
 
 class TrainingEvaluationService:
@@ -23,6 +25,7 @@ class TrainingEvaluationService:
         self.split_data()
         self.model_training()
         self.model_validation()
+        self.deploy_model(self.model)
 
     def get_model(self):
         return self.model
@@ -41,3 +44,10 @@ class TrainingEvaluationService:
         self.x = self.data.drop(columns=[20])
         self.y = self.data[20]
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x, self.y, test_size=0.30)
+
+
+    def deploy_model(self, mlmodel):
+        model_file = "MachineLearningModel.pkl"
+        with open (model_file, 'wb') as file:
+            pickle.dump(mlmodel, file)
+        print("Model deployed successfully!")

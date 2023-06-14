@@ -10,17 +10,12 @@ from ModelTrainingEvaluationService.TrainingEvaluationService import TrainingEva
 
 class ExperimentationZone:
     data = []
-    model = pd.DataFrame()
 
     def __init__(self):
         self.data_collection()
         self.data_preprocessing()
         self.data_transformation()
         self.feature_engineering()
-        self.model = TrainingEvaluationService(self.data).get_model()
-
-    def get_data(self):
-        return self.model
 
     def experimentation_zone(self):
         self.data_collection()
@@ -56,7 +51,7 @@ class ExperimentationZone:
         # Make some column joins
         pass
 
-    def deploy_model(self):
-        # Deploy the model in the modelScoringService
-        response = requests.post("/NewModel", json={"model": self.model})
-        pass
+    def train_evaluate(self):
+        print('Training and evaluating...')
+        training_eval = TrainingEvaluationService(self.data)
+
