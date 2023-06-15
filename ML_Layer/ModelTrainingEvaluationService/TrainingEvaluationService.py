@@ -50,7 +50,4 @@ class TrainingEvaluationService:
         with open(model_file, 'wb') as file:
             pickle.dump(self.model, file)
 
-        with open("Data/X_Test.pkl", 'wb') as file:
-            pickle.dump(self.x_test, file)
-
         print("Model deployed successfully!")
