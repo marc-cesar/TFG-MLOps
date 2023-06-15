@@ -10,8 +10,8 @@ modelScoringService_endpoint = Blueprint('modelScoringService_endpoint', __name_
 
 @modelScoringService_endpoint.route('/Predict', methods=['GET'])
 def predict():
-    with open("MachineLearningModel.pkl", 'rb') as file:
+    with open("Data/MachineLearningModel.pkl", 'rb') as file:
         model = joblib.load(file)
-    data = request.get_json()
-    return model.predict(data)
+    return str(model.predict())
+
 

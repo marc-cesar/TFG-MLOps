@@ -16,12 +16,13 @@ class ExperimentationZone:
         self.data_preprocessing()
         self.data_transformation()
         self.feature_engineering()
+        self.train_evaluate()
 
     def experimentation_zone(self):
         self.data_collection()
 
     def data_collection(self):
-        self.data = pd.read_csv("C:/Users/usuario/Downloads/german.data", delimiter=' ', header=None)
+        self.data = pd.read_csv("Data/german.data", delimiter=' ', header=None)
 
     def data_preprocessing(self):
         # Drops all the rows with null values
@@ -53,5 +54,5 @@ class ExperimentationZone:
 
     def train_evaluate(self):
         print('Training and evaluating...')
-        training_eval = TrainingEvaluationService(self.data)
+        TrainingEvaluationService(self.data)
 

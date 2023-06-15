@@ -14,9 +14,9 @@ exp = ExperimentationZone()  # Initialize experimentation zone
 
 @app.route('/setupModel', methods=['PUT'])
 def setup_model():  # Deploys the model into the ModelScoringService
-    exp.deploy_model()
+    ExperimentationZone()
 
 
 if __name__ == '__main__':
-    setup_model()
-    # app.run(debug=True)
+    exp = ExperimentationZone()
+    app.run()

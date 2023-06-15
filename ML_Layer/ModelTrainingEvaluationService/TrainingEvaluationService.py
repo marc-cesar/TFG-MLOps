@@ -25,7 +25,7 @@ class TrainingEvaluationService:
         self.split_data()
         self.model_training()
         self.model_validation()
-        self.deploy_model(self.model)
+        self.deploy_model()
 
     def get_model(self):
         return self.model
@@ -45,9 +45,12 @@ class TrainingEvaluationService:
         self.y = self.data[20]
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x, self.y, test_size=0.30)
 
+    def deploy_model(self):
+        model_file = "Data/MachineLearningModel.pkl"
+        with open(model_file, 'wb') as file:
+            pickle.dump(self.model, file)
 
-    def deploy_model(self, mlmodel):
-        model_file = "MachineLearningModel.pkl"
-        with open (model_file, 'wb') as file:
-            pickle.dump(mlmodel, file)
+        with open("Data/X_Test.pkl", 'wb') as file:
+            pickle.dump(self.x_test, file)
+
         print("Model deployed successfully!")
