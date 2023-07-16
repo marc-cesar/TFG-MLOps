@@ -5,6 +5,9 @@ import pandas as pd
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+
 from ModelScoringService import ModelScoringService
 import pickle
 
@@ -37,7 +40,7 @@ class TrainingEvaluationService:
 
     def model_training(self):
         # classifiers = ["AdaBoost", "Decision Tree", "GaussianNB", "QuadraticDiscriminantAnalysis()"]
-        self.model = QuadraticDiscriminantAnalysis()
+        self.model = GaussianNB()
         self.model.fit(self.x_train, self.y_train)
 
     def split_data(self):
