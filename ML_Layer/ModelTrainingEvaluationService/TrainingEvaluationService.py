@@ -40,7 +40,7 @@ class TrainingEvaluationService:
 
     def model_training(self):
         # classifiers = ["AdaBoost", "Decision Tree", "GaussianNB", "QuadraticDiscriminantAnalysis()"]
-        self.model = GaussianNB()
+        self.model = DecisionTreeClassifier()
         self.model.fit(self.x_train, self.y_train)
 
     def split_data(self):

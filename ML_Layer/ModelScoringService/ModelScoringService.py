@@ -12,8 +12,10 @@ modelScoringService_endpoint = Blueprint('modelScoringService_endpoint', __name_
 def predict():
     with open("Data/MachineLearningModel.pkl", 'rb') as file:
         model = joblib.load(file)
+        file.close()
     # Get Data with JSON
     data = request.get_json()
+    print(data)
 
     d = {'0': [data['0'][0]],
          '1': [data['1'][0]],
@@ -37,5 +39,5 @@ def predict():
          '19': [data['19'][0]],
          }
     df = pd.DataFrame(data=d)
-    print(model.predict(df))
+
     return str(model.predict(df)[0])
