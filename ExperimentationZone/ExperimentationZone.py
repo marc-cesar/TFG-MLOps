@@ -31,7 +31,7 @@ class ExperimentationZone:
 
     def data_transformation(self):
         # Replaces all categorical values by natural numbers
-        self.data = pd.read_csv("C:/Users/usuario/Downloads/german.data", delimiter=' ', header=None)
+        self.data = pd.read_csv("Data/german.data", delimiter=' ', header=None)
         self.data[0] = self.data[0].replace(['A11', 'A12', 'A13', 'A14'], [0, 1, 2, 3])
         self.data[2] = self.data[2].replace(['A30', 'A31', 'A32', 'A33', 'A34'], [0, 1, 2, 3, 4])
         self.data[3] = self.data[3].replace(['A40', 'A41', 'A42', 'A43', 'A44', 'A45', 'A46', 'A47', 'A48',
