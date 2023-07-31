@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT --chdir ML_Layer main:app
+web: gunicorn main:app
