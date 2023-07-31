@@ -41,3 +41,8 @@ def predict():
     df = pd.DataFrame(data=d)
 
     return str(model.predict(df)[0])
+
+
+@modelScoringService_endpoint.route('/hello', methods=['GET'])
+def hello_world():
+    return "Hello World!"
