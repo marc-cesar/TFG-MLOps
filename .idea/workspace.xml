@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="438e2ff2-76d5-4b46-83a3-30978813bb1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ML_Layer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/MachineLearningModel.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/german.data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExperimentationZone/ExperimentationZone.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/MLOPs-Java.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/src/Controllers/ProductionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/src/Controllers/ScoringServiceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModelScoringService/ModelScoringService.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModelTrainingEvaluationService/TrainingEvaluationService.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductionZone/ProductionZone.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2VAZU4Drri1lRVxMYapdOfJWk2u" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="TFG-MLOps" type="PythonConfigurationType" factoryName="Python">
+      <module name="TFG-MLOps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="438e2ff2-76d5-4b46-83a3-30978813bb1a" name="Changes" comment="" />
+      <created>1694280859895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694280859895</updated>
+      <workItem from="1694280863649" duration="31000" />
+      <workItem from="1694283107201" duration="1132000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
