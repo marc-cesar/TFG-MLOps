@@ -5,36 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="438e2ff2-76d5-4b46-83a3-30978813bb1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ML_Layer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/MachineLearningModel.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/german.data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExperimentationZone/ExperimentationZone.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/MLOPs-Java.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/src/Controllers/ProductionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Java/MLOPs-Java/src/Controllers/ScoringServiceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModelScoringService/ModelScoringService.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModelTrainingEvaluationService/TrainingEvaluationService.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductionZone/ProductionZone.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runtime.txt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/TFG-MLOps.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MLOps-Python-2/.idea/ML_Layer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MLOps-Python/.idea/MLOps-Python.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MLOps-Python/TrainingEvaluationService/TrainingEvaluationService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.github/workflows/main.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/ML_Layer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/Data/MachineLearningModel.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/ExperimentationZone/ExperimentationZone.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/ExperimentationZone/ExperimentationZone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/ModelScoringService/ModelScoringService.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/ModelScoringService/ModelScoringService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/ModelTrainingEvaluationService/TrainingEvaluationService.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/ProductionZone/ProductionZone.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/ProductionZone/ProductionZone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/Tests/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLOps-Python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,24 +40,27 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2VAZU4Drri1lRVxMYapdOfJWk2u" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="TFG-MLOps" type="PythonConfigurationType" factoryName="Python">
       <module name="TFG-MLOps" />
@@ -98,7 +94,12 @@
       <option name="presentableId" value="Default" />
       <updated>1694280859895</updated>
       <workItem from="1694280863649" duration="31000" />
-      <workItem from="1694283107201" duration="1132000" />
+      <workItem from="1694283107201" duration="1879000" />
+      <workItem from="1694285068734" duration="108000" />
+      <workItem from="1694285187875" duration="595000" />
+      <workItem from="1694285956620" duration="1832000" />
+      <workItem from="1694423640713" duration="1857000" />
+      <workItem from="1694715242273" duration="594000" />
     </task>
     <servers />
   </component>

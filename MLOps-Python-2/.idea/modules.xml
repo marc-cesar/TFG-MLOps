@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MLOps-Python.iml" filepath="$PROJECT_DIR$/.idea/MLOps-Python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ML_Layer.iml" filepath="$PROJECT_DIR$/.idea/ML_Layer.iml" />
     </modules>
   </component>
 </project>

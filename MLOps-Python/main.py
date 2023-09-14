@@ -1,22 +1,24 @@
+# https://refactoring.guru/design-patterns/singleton/python/example
+
 # Here flask should be configured to run the api
 from flask import Flask, request, jsonify, Blueprint
 
 from ExperimentationZone.ExperimentationZone import ExperimentationZone
-from ModelScoringService.ModelScoringService import modelScoringService_endpoint
+from ModelScoringService.ModelScoringService import ModelScoringService, modelScoringService_endpoint
+from TrainingEvaluationService.TrainingEvaluationService import TrainingEvaluationService
 
 app = Flask(__name__)
 
 # Register the apis
 app.register_blueprint(modelScoringService_endpoint)
 
-exp = ExperimentationZone()  # Initialize experimentation zone
-
-
-@app.route('/setupModel', methods=['PUT'])
-def setup_model():  # Deploys the model into the ModelScoringService
-    ExperimentationZone()
+singleton = {
+    'scoring_service': ModelScoringService(),
+    'training_service': None
+}
 
 
 if __name__ == '__main__':
-    exp = ExperimentationZone()
+    # Call experimentation zone to start the pipeline
+    ExperimentationZone()
     app.run()

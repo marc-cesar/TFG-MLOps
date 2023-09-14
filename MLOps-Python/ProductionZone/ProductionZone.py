@@ -1,10 +1,12 @@
-# Here there's an API route to catch the NewRetrainingEvent.
-# When the event is called, it should catch all the new data summed to the previous data, and call the Training Service
-# Then, sends the model to the model Score Service
+from TrainingEvaluationService.TrainingEvaluationService import TrainingEvaluationService
+from flask import Blueprint, request
 
-def data_collection():
-    pass
+productionZoneEndpoint = Blueprint('productionZone_endpoint', __name__, template_folder='templates')
 
 
-def call_training_service():
-    pass
+@productionZoneEndpoint.route('/Retrain', methods=['POST'])
+def retrain():
+    # Get the new data from the request and call the training service
+    from main import singleton
+    training_service = singleton['training_service']
+    training_service.add_new_data(request.get_json())

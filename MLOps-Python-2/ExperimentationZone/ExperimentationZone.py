@@ -2,8 +2,10 @@
 # Here the data should be loaded, pre-processed, transformed and some feature engineering should be made
 # Then it should call the production zone tests
 import pandas as pd
+from flask import request
+import requests
 
-from TrainingEvaluationService.TrainingEvaluationService import TrainingEvaluationService
+from ModelTrainingEvaluationService.TrainingEvaluationService import TrainingEvaluationService
 
 
 class ExperimentationZone:
@@ -15,6 +17,9 @@ class ExperimentationZone:
         self.data_transformation()
         self.feature_engineering()
         self.train_evaluate()
+
+    def experimentation_zone(self):
+        self.data_collection()
 
     def data_collection(self):
         self.data = pd.read_csv("Data/german.data", delimiter=' ', header=None)
@@ -48,6 +53,6 @@ class ExperimentationZone:
         pass
 
     def train_evaluate(self):
-        training_service = TrainingEvaluationService(self.data)
-        from main import singleton
-        singleton['training_service'] = training_service
+        print('Training and evaluating...')
+        TrainingEvaluationService(self.data)
+
