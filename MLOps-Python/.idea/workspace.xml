@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0311a62d-7344-4e1a-b4ad-f10bf07db0a7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/TFG-MLOps.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MLOps-Python-2/.idea/ML_Layer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/MLOps-Python.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TrainingEvaluationService/TrainingEvaluationService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ML_Layer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/MachineLearningModel.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExperimentationZone/ExperimentationZone.py" beforeDir="false" afterPath="$PROJECT_DIR$/ExperimentationZone/ExperimentationZone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModelScoringService/ModelScoringService.py" beforeDir="false" afterPath="$PROJECT_DIR$/ModelScoringService/ModelScoringService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModelTrainingEvaluationService/TrainingEvaluationService.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductionZone/ProductionZone.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProductionZone/ProductionZone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="0311a62d-7344-4e1a-b4ad-f10bf07db0a7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +82,7 @@
       <updated>1694286278385</updated>
       <workItem from="1694286284359" duration="2506000" />
       <workItem from="1694423641256" duration="16779000" />
-      <workItem from="1694715240416" duration="9865000" />
+      <workItem from="1694715240416" duration="10578000" />
     </task>
     <servers />
   </component>
@@ -155,6 +131,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MLOps_Python$MLOps_Python.coverage" NAME="MLOps-Python Coverage Results" MODIFIED="1694727947791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MLOps_Python$MLOps_Python.coverage" NAME="MLOps-Python Coverage Results" MODIFIED="1694728426025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

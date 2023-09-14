@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="438e2ff2-76d5-4b46-83a3-30978813bb1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/TFG-MLOps.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MLOps-Python-2/.idea/ML_Layer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MLOps-Python/.idea/MLOps-Python.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MLOps-Python/TrainingEvaluationService/TrainingEvaluationService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.github/workflows/main.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/ML_Layer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/Data/MachineLearningModel.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/ExperimentationZone/ExperimentationZone.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/ExperimentationZone/ExperimentationZone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/ModelScoringService/ModelScoringService.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/ModelScoringService/ModelScoringService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/ModelTrainingEvaluationService/TrainingEvaluationService.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/ProductionZone/ProductionZone.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/ProductionZone/ProductionZone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/Tests/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLOps-Python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLOps-Python/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="438e2ff2-76d5-4b46-83a3-30978813bb1a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
