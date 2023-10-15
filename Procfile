@@ -1,1 +1,0 @@
-web: gunicorn MLOps-Python.main:app

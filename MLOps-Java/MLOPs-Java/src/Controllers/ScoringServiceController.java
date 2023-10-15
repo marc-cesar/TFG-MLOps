@@ -1,2 +1,7 @@
-public class ScoringServiceController {
-}
+package ModelScoringService;
+
+public class ModelScoring {
+    public ModelScoring() {}
+
+    
+} 

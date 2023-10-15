@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0311a62d-7344-4e1a-b4ad-f10bf07db0a7" name="Changes" comment="" />
+    <list default="true" id="0311a62d-7344-4e1a-b4ad-f10bf07db0a7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/TFG-MLOps.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/TFG-MLOps.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Procfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../runtime.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,6 +90,9 @@
       <workItem from="1694286284359" duration="2506000" />
       <workItem from="1694423641256" duration="16779000" />
       <workItem from="1694715240416" duration="10578000" />
+      <workItem from="1694967562236" duration="694000" />
+      <workItem from="1697130744864" duration="681000" />
+      <workItem from="1697204877239" duration="715000" />
     </task>
     <servers />
   </component>
