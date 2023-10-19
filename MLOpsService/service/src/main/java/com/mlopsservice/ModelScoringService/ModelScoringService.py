@@ -44,7 +44,7 @@ def predict():
     
     return str(predict)
 
-@app.route("/NewModel", methods=['UPDATE'])
+@app.route("/NewModel", methods=['PUT'])
 def reload_model():
     load_model()
 
