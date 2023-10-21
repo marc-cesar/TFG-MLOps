@@ -1,19 +1,20 @@
 package com.mlopsservice.ModelMonitoringService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import com.mlopsservice.Entities.Request;
-import com.mlopsservice.Entities.Services.RequestService;
 import com.mlopsservice.Events.NewFeedbackEvent;
+import com.mlopsservice.Events.NewRetrainingEvent;
 
 
 @Component
 public class ModelMonitoringService {
-    
+
     @Autowired
-    private RequestService requestService;
+    private ApplicationEventPublisher eventPublisher;
 
     private int correctPredictions = 0;
     private int incorrectPredictions = 0;
@@ -33,7 +34,7 @@ public class ModelMonitoringService {
         // Condition to be changed
         if(correctPredictions + incorrectPredictions == 10){
             // Send event to retrain the model
-                //newRetrainingEvent.NewRetraining();
+                eventPublisher.publishEvent(new NewRetrainingEvent());
                 correctPredictions = 0;
                 incorrectPredictions = 0;
         }

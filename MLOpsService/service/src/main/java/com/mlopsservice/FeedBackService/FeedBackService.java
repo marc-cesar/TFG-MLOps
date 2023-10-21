@@ -28,7 +28,9 @@ public class FeedBackService {
         // Get from database the request with the given id
         Request rest = requestService.getById(id);
         // Set its feedback
-        rest.setPrediction(feedback);
+        rest.setFeedback(feedback);
+        // Save it to database
+        requestService.save(rest);
         // Send new feedback event
         eventPublisher.publishEvent(new NewFeedbackEvent(rest));
     }

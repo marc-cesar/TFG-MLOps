@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.mlopsservice.Entities.Request;
-import com.mlopsservice.Entities.Repositories.RequestRepository;
 import com.mlopsservice.Entities.Services.RequestService;
 import com.mlopsservice.Events.NewModelEvent;
 
@@ -52,9 +51,8 @@ public class ModelScoringService {
         return "prediction is " + prediction.getBody() + " and id is " + req.getId().toString();
     }
     
-    // Consume Event
     @EventListener
-    public void NewModelListener(NewModelEvent ev) { // WE HAVE TO SEND AN ADD NEW MODEL EVENT
+    public void NewModelListener(NewModelEvent ev) {
         // Call Python to update model
         String serviceUrl = ServiceDefaultURL + "NewModel";
         ResponseEntity<Void> response = restTemplate.exchange(serviceUrl, HttpMethod.PUT, null, Void.class);
