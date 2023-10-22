@@ -11,7 +11,6 @@ import com.mlopsservice.Events.NewModelEvent;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -55,7 +54,7 @@ public class ModelScoringService {
     public void NewModelListener(NewModelEvent ev) {
         // Call Python to update model
         String serviceUrl = ServiceDefaultURL + "NewModel";
-        ResponseEntity<Void> response = restTemplate.exchange(serviceUrl, HttpMethod.PUT, null, Void.class);
+        ResponseEntity<Void> response = restTemplate.getForEntity(serviceUrl, Void.class);
         if(response.getStatusCode() != HttpStatus.OK) {
             System.out.println("Error connecting to the API while updating the model");
         }

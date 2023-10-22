@@ -72,7 +72,7 @@ def data_transformation():
     data[16] = data[16].replace(['A171', 'A172', 'A173', 'A174'], [0, 1, 2, 3])
     data[18] = data[18].replace(['A191', 'A192'], [0, 1])
     data[19] = data[19].replace(['A201', 'A202'], [0, 1])
-    data[20] = data[20].replace([1, 2], [0, 1])
+    data[20] = data[20].replace([1, 2], [0, 1]) # 1 = Good, 2 = Bad => 0 = Good, 1 = Bad
 
 def feature_engineering():
     # Make some column joins

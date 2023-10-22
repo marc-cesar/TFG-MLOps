@@ -44,9 +44,11 @@ def predict():
     
     return str(predict)
 
-@app.route("/NewModel", methods=['PUT'])
+@app.route("/NewModel", methods=['GET'])
 def reload_model():
     load_model()
+    print("Model Reloaded")
+    return "Model Reloaded"
 
 if __name__ == '__main__':
     load_model()
