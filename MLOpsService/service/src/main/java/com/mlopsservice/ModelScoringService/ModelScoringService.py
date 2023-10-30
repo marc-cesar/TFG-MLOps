@@ -10,7 +10,7 @@ model = pd.DataFrame()
 
 def load_model():
     global model
-    with open('MLOpsService/service/src/main/java/com/mlopsservice/Data/model.pkl','rb') as model_file:
+    with open('src/main/java/com/mlopsservice/Data/model.pkl','rb') as model_file:
         model = pickle.load(model_file)
 
 @app.route("/Predict", methods=['POST'])

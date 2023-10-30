@@ -17,7 +17,7 @@ public class DataEngineeringService {
 
     @EventListener
     public void NewRetrainingListener(NewRetrainingEvent ev) {
-        ProcessBuilder pb = new ProcessBuilder("python", "MLOpsService/service/src/main/java/com/mlopsservice/DataEngineeringService/DataEngineeringService.py");
+        ProcessBuilder pb = new ProcessBuilder("python", "src/main/java/com/mlopsservice/DataEngineeringService/DataEngineeringService.py");
         try {
             Process p = pb.start();
             // Wait for the process to exit

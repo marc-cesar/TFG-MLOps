@@ -18,7 +18,7 @@ model = pd.DataFrame()
 
 def get_data():
     global data
-    data = pd.read_csv("MLOpsService/service/src/main/java/com/mlopsservice/Data/PreparedData.csv", delimiter=',', header=None)
+    data = pd.read_csv("src/main/java/com/mlopsservice/Data/PreparedData.csv", delimiter=',', header=None)
 
 def data_splitting():
     global data, x, y ,x_train, x_test, y_train, y_test
@@ -37,7 +37,7 @@ def validate_model():
 
 def deploy_model():
     global model
-    with open("MLOpsService/service/src/main/java/com/mlopsservice/Data/model.pkl",'wb') as f:
+    with open("src/main/java/com/mlopsservice/Data/model2.pkl",'wb') as f:
         pickle.dump(model, f)  
 
 if __name__ == "__main__":
