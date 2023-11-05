@@ -5,8 +5,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.mlopsservice.Events.DataCollectionReadyEvent;
-import com.mlopsservice.Events.NewRetrainingEvent;
+import com.Events.DataCollectionReadyEvent;
+import com.Events.NewRetrainingEvent;
 
 
 @Component
@@ -17,7 +17,10 @@ public class DataEngineeringService {
 
     @EventListener
     public void NewRetrainingListener(NewRetrainingEvent ev) {
-        ProcessBuilder pb = new ProcessBuilder("python", "src/main/java/com/mlopsservice/DataEngineeringService/DataEngineeringService.py");
+        // Print working directory
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        ProcessBuilder pb = new ProcessBuilder("python", "MLOpsService/service/src/main/java/com/mlopsservice/DataEngineeringService/DataEngineeringService.py");
+        
         try {
             Process p = pb.start();
             // Wait for the process to exit

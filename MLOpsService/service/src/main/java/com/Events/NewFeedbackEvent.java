@@ -1,6 +1,6 @@
-package com.mlopsservice.Events;
+package com.Events;
 
-import com.mlopsservice.Entities.Request;
+import com.Entities.Request;
 
 public class NewFeedbackEvent {
     Request req;

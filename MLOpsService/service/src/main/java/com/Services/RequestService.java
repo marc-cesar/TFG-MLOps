@@ -1,10 +1,12 @@
-package com.mlopsservice.Entities.Services;
+package com.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mlopsservice.Entities.Request;
-import com.mlopsservice.Entities.Repositories.RequestRepository;
+import com.Entities.Request;
+import com.Repositories.RequestRepository;
+
+import java.util.List;
 
 @Service
 public class RequestService {
@@ -13,6 +15,10 @@ public class RequestService {
     
     public Request getById(Long id) {
         return requestRepository.findById(id).orElse(null);
+    }
+
+    public List<Request> getAllRequests() {
+        return requestRepository.findAll();
     }
 
     public void save(Request request) {

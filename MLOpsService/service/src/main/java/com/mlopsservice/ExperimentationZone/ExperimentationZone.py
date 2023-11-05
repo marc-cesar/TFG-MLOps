@@ -26,7 +26,7 @@ def Experimentate():
 def data_collection():
     # Reads the data from the .data file
     global data 
-    data = pd.read_csv("Data/german.data", delimiter=' ', header=None)
+    data = pd.read_csv("MLOpsService/service/src/main/java/com/mlopsservice/Data/german.data", delimiter=' ', header=None)
 
 def data_preprocessing(): 
     # At the moment we will only delete the null values
@@ -80,7 +80,7 @@ def validate_model():
 def deploy_model():
     # deploy model into production
     global model
-    with open('Data/model.pkl','wb') as model_file:
+    with open('MLOpsService/service/src/main/java/com/mlopsservice/Data/model.pkl','wb') as model_file:
         pickle.dump(model,model_file)
 
 if __name__ == '__main__':

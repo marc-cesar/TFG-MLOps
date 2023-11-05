@@ -1,4 +1,4 @@
-package com.mlopsservice.Events;
+package com.Events;
 
 public class DataCollectionReadyEvent {
     public DataCollectionReadyEvent() {

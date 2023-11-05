@@ -1,0 +1,62 @@
+<div class="overflow-x-auto">
+    <table class="mx-auto min-w-max bg-white">
+        <thead class="border-b">
+            <tr>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">Id</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field0</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field1</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field2</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field3</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field4</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field5</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field6</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field7</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field8</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field9</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field10</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field11</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field12</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field13</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field14</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field15</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field16</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field17</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field18</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">field19</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">Prediction</th>
+                <th scope="col" class="text-xs px-4 font-bold text-gray-900 py-4 text-center">FeedBack</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let request of requests" class="border-b">
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-900">{{ request.id }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field0 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field1 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field2 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field3 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field4 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field5 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field6 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field7 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field8 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field9 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field10 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field11 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field12 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field13 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field14 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field15 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field16 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field17 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field18 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.field19 }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.prediction }}</td>
+                <td class="px-1 py-4 whitespace-nowrap text-center text-xs font-normal text-gray-900">{{ request.feedback != null ? request.feedback : 'NULL' }}</td>
+            </tr>            
+            <!-- <app-requests-row
+                *ngFor="let request of requests"
+                [request]="request">
+            </app-requests-row> -->
+        </tbody>
+    </table>
+</div>

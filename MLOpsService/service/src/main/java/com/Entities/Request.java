@@ -1,4 +1,4 @@
-package com.mlopsservice.Entities;
+package com.Entities;
 
 import java.util.Map;
 
@@ -41,7 +41,7 @@ public class Request {
     private String field17;
     private String field18;
     private String field19;
-    // 20 fields in total
+
     private String prediction;
     private String feedback;
     

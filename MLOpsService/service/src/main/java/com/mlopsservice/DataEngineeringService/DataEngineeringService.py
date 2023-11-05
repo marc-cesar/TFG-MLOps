@@ -1,5 +1,6 @@
 import mysql.connector
 import pandas as pd
+import os
 # read the data from csv file
 # read the data from the database (requests)
 # if a request has feedback, take the feedback
@@ -10,8 +11,10 @@ data = []
 
 def data_collection():
     # Reads the data from the .data file and the database
-    global data 
-    data = pd.read_csv("src/main/java/com/mlopsservice/Data/german.data", index_col=False, delimiter=' ', header=None)
+    global data
+    #get working directory
+    print(os.getcwd())
+    data = pd.read_csv("MLOpsService/service/src/main/java/com/mlopsservice/Data/german.data", index_col=False, delimiter=' ', header=None)
 
 def read_data_from_database():
     global data
@@ -80,7 +83,7 @@ def feature_engineering():
 
 def saveFile():
     global data
-    data = data.to_csv('src/main/java/com/mlopsservice/Data/PreparedData.csv', index=False, header=False)
+    data = data.to_csv('MLOpsService/service/src/main/java/com/mlopsservice/Data/PreparedData.csv', index=False, header=False)
 
 
 if __name__ == "__main__":
