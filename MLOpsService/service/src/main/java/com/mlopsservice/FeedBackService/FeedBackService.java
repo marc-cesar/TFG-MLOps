@@ -13,7 +13,6 @@ import com.Entities.Request;
 import com.Events.NewFeedbackEvent;
 import com.Services.RequestService;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 @Component

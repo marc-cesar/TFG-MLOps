@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication (scanBasePackages = "com" )
-@ComponentScan(basePackages = {"com.Repositories", "com.Services", "com.Entities", "com.Controllers","com.Events","com.mlopsservice"})
+@ComponentScan(basePackages = {"com.Repositories", "com.Services", "com.Entities", "com.Controllers","com.Events","com.mlopsservice","com.Config"})
 public class Main {
 	
 
