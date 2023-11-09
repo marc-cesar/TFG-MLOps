@@ -38,7 +38,7 @@ def data_transformation():
     # Specific function for the expected data
     global data
     # Replaces all categorical values by natural numbers
-    data = pd.read_csv("Data/german.data", delimiter=' ', header=None)
+    data = pd.read_csv("MLOpsService/service/src/main/java/com/mlopsservice/Data/german.data", delimiter=' ', header=None)
     data[0] = data[0].replace(['A11', 'A12', 'A13', 'A14'], [0, 1, 2, 3])
     data[2] = data[2].replace(['A30', 'A31', 'A32', 'A33', 'A34'], [0, 1, 2, 3, 4])
     data[3] = data[3].replace(['A40', 'A41', 'A42', 'A43', 'A44', 'A45', 'A46', 'A47', 'A48',

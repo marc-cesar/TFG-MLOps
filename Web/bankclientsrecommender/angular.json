@@ -25,9 +25,10 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               {
                 "input": "src/styles.css"
-              }              
+              }
             ],
             "scripts": []
           },
@@ -89,9 +90,10 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               {
                 "input": "src/styles.css"
-              }              
+              }
             ],
             "scripts": []
           }

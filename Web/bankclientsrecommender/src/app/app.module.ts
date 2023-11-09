@@ -13,6 +13,9 @@ import { RequestsListPageComponent } from './requests-list-page/requests-list-pa
 import { HomePageComponent } from './home-page/home-page.component';
 import { FooterCreditsComponent } from './footer-credits/footer-credits.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResponseDialogComponent } from './response-dialog/response-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -30,6 +33,7 @@ const routes: Routes = [
     RequestsListPageComponent,
     HomePageComponent,
     FooterCreditsComponent,
+    ResponseDialogComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -37,7 +41,9 @@ const routes: Routes = [
     HttpClientModule,
     NgOptimizedImage,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

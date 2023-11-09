@@ -15,7 +15,6 @@ export class RequestsTableComponent {
     ngOnInit() {
       this.http.get<Request[]>('http://localhost:8081/requests/all')
       .subscribe((data) => {
-        console.log(data);
         this.requests = data;
       });
     }

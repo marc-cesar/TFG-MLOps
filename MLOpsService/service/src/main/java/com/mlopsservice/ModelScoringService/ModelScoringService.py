@@ -42,7 +42,7 @@ def predict():
     df = pd.DataFrame(data=d)
     predict = model.predict(df)[0]
     
-    return str(predict)
+    return str(predict) # (1 = Good,  2 = Bad) => (0 = Good, 1 = Bad)
 
 @app.route("/NewModel", methods=['GET'])
 def reload_model():

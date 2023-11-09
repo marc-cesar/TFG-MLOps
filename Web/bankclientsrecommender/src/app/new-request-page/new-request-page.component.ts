@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ResponseDialogComponent } from '../response-dialog/response-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-request-page',
@@ -9,7 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class NewRequestPageComponent {
 
-  http = inject(HttpClient);
+  constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   applyForm = new FormGroup({
     field0: new FormControl(''),
@@ -34,6 +36,33 @@ export class NewRequestPageComponent {
     field19: new FormControl(''),
   });
 
+  emptyForm(){
+    // empty all the fields in the form
+    this.applyForm.setValue({
+      field0: '',
+      field1: '',
+      field2: '',
+      field3: '',
+      field4: '',
+      field5: '',
+      field6: '',
+      field7: '',
+      field8: '',
+      field9: '',
+      field10: '',
+      field11: '',
+      field12: '',
+      field13: '',
+      field14: '',
+      field15: '',
+      field16: '',
+      field17: '',
+      field18: '',
+      field19: '',
+    });
+
+  }
+
   sendForm(){
     //console.log(this.applyForm.value)
     this.http.post('http://localhost:8081/api/predict', {
@@ -57,8 +86,23 @@ export class NewRequestPageComponent {
       "17": [this.applyForm.value.field17],
       "18": [this.applyForm.value.field18],
       "19": [this.applyForm.value.field19]
-    }, { responseType: 'text' }).subscribe((data) => {
-      console.log(data);
+    }, { responseType: 'text' }).subscribe({
+      next: (response) => {
+        // console.log(response) {"prediction":"0","id":"16"}, (0 = Good,  1 = Bad)
+        this.emptyForm()
+        this.dialog.open(ResponseDialogComponent, {
+          data: {
+            response: response
+          }
+        });
+      },
+      error: (error) => {
+        this.dialog.open(ResponseDialogComponent, {
+          data: {
+            response: error
+          }
+        });
+      }
     });
   }
 }

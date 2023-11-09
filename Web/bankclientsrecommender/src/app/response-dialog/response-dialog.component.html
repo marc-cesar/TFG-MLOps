@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>API Response</h1>
+<div mat-dialog-content>
+  <div *ngIf="parsedResponse.prediction === '0'" style="color: green;">
+    We recommend to grant the credit!
+  </div>
+  <div *ngIf="parsedResponse.prediction === '1'" style="color: red;">
+    Unfortunately, we don't recommend to grant the credit.
+  </div>
+  <p>Prediction ID: {{ parsedResponse.id }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
