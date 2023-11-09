@@ -25,9 +25,16 @@ public class FeedBackService {
     private ApplicationEventPublisher eventPublisher;
 
     @PostMapping(value="/giveFeedback")
-    public void predict(@RequestParam Long id, @RequestParam String feedback) {
+    public void predict(@RequestParam Long id, @RequestParam Boolean isCorrect) {
         // Get from database the request with the given id
         Request rest = requestService.getById(id);
+        String prediction = rest.getPrediction();
+        String feedback;
+        if(isCorrect) {
+            feedback = prediction;
+        } else {
+            feedback = prediction.equals("0") ? "1" : "0";
+        }
         // Set its feedback
         rest.setFeedback(feedback);
         // Save it to database

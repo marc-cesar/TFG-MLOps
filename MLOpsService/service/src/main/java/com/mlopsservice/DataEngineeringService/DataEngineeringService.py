@@ -12,8 +12,6 @@ data = []
 def data_collection():
     # Reads the data from the .data file and the database
     global data
-    #get working directory
-    print(os.getcwd())
     data = pd.read_csv("MLOpsService/service/src/main/java/com/mlopsservice/Data/german.data", index_col=False, delimiter=' ', header=None)
 
 def read_data_from_database():
@@ -31,7 +29,6 @@ def read_data_from_database():
 
     rows_list = []
     for row in cursor.fetchall():
-        print(row)
         (id, field0, field1, field10, field11, field12, field13, field14, field15, field16,
         field17, field18, field19, field2, field3, field4, field5, field6, field7, 
         field8, field9, prediction, feedback) = row

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>API Response</h1>
+<h1 mat-dialog-title>Recommendation</h1>
 <div mat-dialog-content>
   <div *ngIf="parsedResponse.prediction === '0'" style="color: green;">
     We recommend to grant the credit!
@@ -7,6 +7,15 @@
     Unfortunately, we don't recommend to grant the credit.
   </div>
   <p>Prediction ID: {{ parsedResponse.id }}</p>
+  <!-- Display feedback confirmation message -->
+  <div *ngIf="feedbackSubmitted" style="color: green;">
+    Feedback received. Thank you!
+  </div>
+  <div *ngIf="!feedbackSubmitted">
+    <p>Is this prediction correct?</p>
+    <button mat-button class="mr-4" (click)="giveFeedback(true)">Yes</button>
+    <button mat-button class="mr-4" (click)="giveFeedback(false)">No</button>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
