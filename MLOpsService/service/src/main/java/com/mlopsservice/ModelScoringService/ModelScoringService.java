@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.Entities.PreditctionResponse;
+import com.Entities.PredictionResponse;
 import com.Entities.Request;
 import com.Events.NewModelEvent;
 import com.Services.RequestService;
@@ -40,7 +40,7 @@ public class ModelScoringService {
     }
 
     @PostMapping(value="/predict")
-    public ResponseEntity<PreditctionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
+    public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
         // Call python and get prediction*/
         String serviceUrl = ServiceDefaultURL + "Predict";
         ResponseEntity<String> prediction = restTemplate.postForEntity(serviceUrl, param, String.class);
@@ -51,7 +51,7 @@ public class ModelScoringService {
 
         RequestService.save(req);
 
-        PreditctionResponse response = new PreditctionResponse(prediction.getBody(), req.getId().toString());
+        PredictionResponse response = new PredictionResponse(prediction.getBody(), req.getId().toString());
 
         return ResponseEntity.ok(response);
     }

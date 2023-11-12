@@ -1,0 +1,13 @@
+.git
+
+Web/bankclientsrecommender/.editorconfig
+
+Web/bankclientsrecommender/node_modules
+
+Web/bankclientsrecommender/gitignore
+
+*.zip
+
+*.md
+
+/.vscode*

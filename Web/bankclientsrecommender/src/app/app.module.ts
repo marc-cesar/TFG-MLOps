@@ -36,7 +36,7 @@ const routes: Routes = [
     ResponseDialogComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash: true}),
     BrowserModule,
     HttpClientModule,
     NgOptimizedImage,
