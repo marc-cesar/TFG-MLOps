@@ -65,7 +65,7 @@ export class NewRequestPageComponent {
 
   sendForm(){
     //console.log(this.applyForm.value)
-    this.http.post('http://localhost:8081/api/predict', {
+    this.http.post('http://localhost:8080/api/predict', {
       "0": [this.applyForm.value.field0],
       "1": [this.applyForm.value.field1],
       "2": [this.applyForm.value.field2],

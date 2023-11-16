@@ -5,9 +5,9 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.Entities.Request;
-import com.Events.NewFeedbackEvent;
-import com.Events.NewRetrainingEvent;
+import com.mlopsservice.Entities.Request;
+import com.mlopsservice.Events.NewFeedbackEvent;
+import com.mlopsservice.Events.NewRetrainingEvent;
 
 
 @Component

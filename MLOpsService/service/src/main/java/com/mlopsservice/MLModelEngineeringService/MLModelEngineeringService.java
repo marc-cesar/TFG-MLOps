@@ -5,8 +5,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.Events.DataCollectionReadyEvent;
-import com.Events.NewModelEvent;
+import com.mlopsservice.Events.DataCollectionReadyEvent;
+import com.mlopsservice.Events.NewModelEvent;
 
 @Component
 public class MLModelEngineeringService {

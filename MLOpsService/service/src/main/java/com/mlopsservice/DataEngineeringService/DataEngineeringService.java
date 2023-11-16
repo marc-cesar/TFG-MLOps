@@ -5,8 +5,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.Events.DataCollectionReadyEvent;
-import com.Events.NewRetrainingEvent;
+import com.mlopsservice.Events.DataCollectionReadyEvent;
+import com.mlopsservice.Events.NewRetrainingEvent;
 
 
 @Component

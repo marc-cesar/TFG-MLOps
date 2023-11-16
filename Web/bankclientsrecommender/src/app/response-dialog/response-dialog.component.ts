@@ -43,7 +43,7 @@ export class ResponseDialogComponent implements OnInit {
       isCorrect: isCorrect
     };
 
-    const feedbackURL = `http://localhost:8081/api/giveFeedback?id=${this.parsedResponse.id}&isCorrect=${isCorrect}`;
+    const feedbackURL = `http://localhost:8080/api/giveFeedback?id=${this.parsedResponse.id}&isCorrect=${isCorrect}`;
 
     // Send the feedback to the backend
     // URL = http://localhost:8081/api/giveFeedback?id=123&isCorrect=true

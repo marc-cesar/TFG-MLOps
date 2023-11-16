@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Entities.Request;
-import com.Events.NewFeedbackEvent;
-import com.Services.RequestService;
+import com.mlopsservice.Entities.Request;
+import com.mlopsservice.Events.NewFeedbackEvent;
+import com.mlopsservice.Services.RequestService;
 
 @RestController
 @RequestMapping("/api")

@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.Entities.PredictionResponse;
-import com.Entities.Request;
-import com.Events.NewModelEvent;
-import com.Services.RequestService;
+import com.mlopsservice.Entities.PredictionResponse;
+import com.mlopsservice.Entities.Request;
+import com.mlopsservice.Events.NewModelEvent;
+import com.mlopsservice.Services.RequestService;
 
 import java.util.*;
 

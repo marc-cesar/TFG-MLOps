@@ -13,7 +13,7 @@ export class RequestsTableComponent {
     http = inject(HttpClient);
   
     ngOnInit() {
-      this.http.get<Request[]>('http://localhost:8081/requests/all')
+      this.http.get<Request[]>('http://localhost:8080/requests/all')
       .subscribe((data) => {
         this.requests = data;
       });
