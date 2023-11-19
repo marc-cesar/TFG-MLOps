@@ -1,57 +1,54 @@
 # Flask
 import os
-import pickle
+import joblib
+import time
+import datetime
 import pandas as pd
 from flask import Flask,request
 
 app = Flask(__name__)
 
+MODEL_VERSION_FILE = 'model_version.txt'
+last_checked = 0
+model_version = None
 model = pd.DataFrame()
 
-def load_model():
-    import os
-    print(os.getcwd())
-    global model
-    with open('Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/Data/model.pkl','rb') as model_file:
-        model = pickle.load(model_file)
+def check_for_model_update():
+    global model, last_checked, model_version
+    current_time = time.time()
+    # Check for an update every 60 seconds (or any suitable interval)
+    if current_time - last_checked > 60:
+        last_checked = current_time
+        with open(MODEL_VERSION_FILE, 'r') as file:
+            current_version = file.read().strip()
+            if current_version != model_version:
+                model_version = current_version
+                with open('/shared_data/model.pkl','rb') as model_file:
+                    model = joblib.load(model_file)
+                print("Model reloaded")
+
+def update_model_version():
+    global model_version
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    with open(MODEL_VERSION_FILE, 'w') as file:
+        file.write(timestamp)
+
+
+
+@app.route("/NewModel", methods=['GET'])
+def reload_model():
+    # Write the file 
+    update_model_version()
+    print("Model Reloaded")
+    return "Model Reloaded"
 
 @app.route("/Predict", methods=['POST'])
 def predict():
+    check_for_model_update()
     global model
     data = request.get_json()
-    d = {
-            '0': [data['0'][0]],
-            '1': [data['1'][0]],
-            '2': [data['2'][0]],
-            '3': [data['3'][0]],
-            '4': [data['4'][0]],
-            '5': [data['5'][0]],
-            '6': [data['6'][0]],
-            '7': [data['7'][0]],
-            '8': [data['8'][0]],
-            '9': [data['9'][0]],
-            '10': [data['10'][0]],
-            '11': [data['11'][0]],
-            '12': [data['12'][0]],
-            '13': [data['13'][0]],
-            '14': [data['14'][0]],
-            '15': [data['15'][0]],
-            '16': [data['16'][0]],
-            '17': [data['17'][0]],
-            '18': [data['18'][0]],
-            '19': [data['19'][0]],
-        }
+    d = {str(key): [value[0]] for key, value in data.items()}
     df = pd.DataFrame(data=d)
     predict = model.predict(df)[0]
     
     return str(predict) # (1 = Good,  2 = Bad) => (0 = Good, 1 = Bad)
-
-@app.route("/NewModel", methods=['GET'])
-def reload_model():
-    load_model()
-    print("Model Reloaded")
-    return "Model Reloaded"
-
-if __name__ == '__main__':
-    load_model()
-    app.run()

@@ -31,7 +31,7 @@ public class ModelScoringService {
     @Autowired
     private final RequestService RequestService;
 
-    private String ServiceDefaultURL = "http://127.0.0.1:5000/";
+    private String ServiceDefaultURL = "http://flask-app:5000/";
     
     public ModelScoringService(RestTemplate restTemplate, RequestService requestService) {
         this.restTemplate = restTemplate;
@@ -42,6 +42,7 @@ public class ModelScoringService {
     public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
         // Call python and get prediction*/
         String serviceUrl = ServiceDefaultURL + "Predict";
+        System.err.println("Calling Python API");
         ResponseEntity<String> prediction = restTemplate.postForEntity(serviceUrl, param, String.class);
         // Create the request object and set its prediction
         Request req = new Request();

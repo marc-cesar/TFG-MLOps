@@ -1,5 +1,5 @@
 import pandas as pd
-import pickle
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
@@ -81,7 +81,7 @@ def deploy_model():
     # deploy model into production
     global model
     with open('Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/Data/model.pkl','wb') as model_file:
-        pickle.dump(model,model_file)
+        joblib.dump(model,model_file)
 
 if __name__ == '__main__':
     Experimentate()

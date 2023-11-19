@@ -1,12 +1,5 @@
 version: '3'
 services:
-  # mysql:
-  #   image: mysql:latest
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=admin
-  #     - MYSQL_DATABASE=admin
-  #   network_mode: "host"
-
   angular-app:
     build:
       context: ./Web/bankclientsrecommender
@@ -18,9 +11,16 @@ services:
       context: ./Backend/mlopsbackend
     ports:
       - "8080:8080"
+    volumes:
+      - model_volume:/shared_data # ./src/main/java/com/backend/mlopsbackend/Data/model.pkl
 
-  # flask-app:
-  #   build:
-  #     context: ./MLOpsService/service/src/main/java/com/mlopsservice/ModelScoringService
-  #   ports:
-  #     - "5000:5000"
+  flask-app:
+    build:
+      context: ./Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/mlopsservice/ModelScoringService
+    ports:
+     - "5000:5000"
+    volumes:
+      - model_volume:/shared_data # ./src/main/java/com/backend/mlopsbackend/Data/model.pkl
+
+volumes:
+  model_volume:

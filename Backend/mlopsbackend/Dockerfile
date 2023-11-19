@@ -10,12 +10,19 @@ COPY ./src ./src
 # Build the application
 RUN mvn clean package
 
+# Create the shared_data directory and copy model.pkl into it
+RUN mkdir -p /shared_data
+COPY ./src/main/java/com/backend/mlopsbackend/Data/model.pkl /shared_data/model.pkl
+
 # Create a separate image for running the Spring Boot application
 FROM openjdk:17
 WORKDIR /app
 
 # Copy the JAR file from the build stage to the new image
 COPY --from=build app/target/mlopsbackend-0.0.1-SNAPSHOT.jar TFG-MLOps.jar
+
+# Copy the model.pkl file from the build stage
+COPY --from=build /shared_data/model.pkl /shared_data/model.pkl
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
