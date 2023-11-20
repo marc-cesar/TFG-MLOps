@@ -235,11 +235,14 @@
             </label>
             <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" formControlName="field19" id="field19">
                 <option value="" selected>Please select</option>
-                <option value="0">yes</option>
+                <option class="mr-4" value="0">yes</option>
                 <option value="1">no</option>
             </select>
             <!-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="field19" formControlName="field19" type="text" placeholder="Enter text here"> -->
             </div>
+        </div>
+        <div *ngIf="isLoading" class="flex justify-center mb-6" >
+            <div class="spinner"></div>
         </div>
         <!-- Submit button -->
         <div class="flex justify-center">

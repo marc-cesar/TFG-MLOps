@@ -9,7 +9,7 @@ import { ApiResponse } from '../models/prediction.api';
   styleUrls: ['./response-dialog.component.css']
 })
 export class ResponseDialogComponent implements OnInit {
-
+  isLoading = false;
   public parsedResponse: ApiResponse = { prediction: '', id: '' };
   public feedbackSubmitted : Boolean = false;
 
@@ -44,19 +44,18 @@ export class ResponseDialogComponent implements OnInit {
     };
 
     const feedbackURL = `http://localhost:8080/api/giveFeedback?id=${this.parsedResponse.id}&isCorrect=${isCorrect}`;
-
-    // Send the feedback to the backend
-    // URL = http://localhost:8081/api/giveFeedback?id=123&isCorrect=true
-
+    this.isLoading = true
     this.http.post(feedbackURL, null)
     .subscribe(
       (result) => {
         console.log('Feedback was given', result);
         this.feedbackGiven.emit(true); // Emit an event if needed
         this.feedbackSubmitted = true;
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error giving feedback:', error);
+        this.isLoading = false;
       }
     );
   }

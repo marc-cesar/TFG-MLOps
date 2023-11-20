@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class NewRequestPageComponent {
 
+  isLoading = false;
+
   constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   applyForm = new FormGroup({
@@ -65,6 +67,7 @@ export class NewRequestPageComponent {
 
   sendForm(){
     //console.log(this.applyForm.value)
+    this.isLoading = true;
     this.http.post('http://localhost:8080/api/predict', {
       "0": [this.applyForm.value.field0],
       "1": [this.applyForm.value.field1],
@@ -95,6 +98,7 @@ export class NewRequestPageComponent {
             response: response
           }
         });
+        this.isLoading = false;
       },
       error: (error) => {
         this.dialog.open(ResponseDialogComponent, {
@@ -102,6 +106,7 @@ export class NewRequestPageComponent {
             response: error
           }
         });
+        this.isLoading = false;
       }
     });
   }
