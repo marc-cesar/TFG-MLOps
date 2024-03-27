@@ -1,0 +1,26 @@
+version: '3'
+services:
+  angular-app:
+    build:
+      context: ./Web/bankclientsrecommender
+    ports:
+      - "80:80"
+  
+  spring-app:
+    build:
+      context: ./Backend/mlopsbackend
+    ports:
+      - "8080:8080"
+    volumes:
+      - model_volume:/shared_data
+
+  flask-app:
+    build:
+      context: ./Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/mlopsservice/ModelScoringService
+    ports:
+     - "5000:5000"
+    volumes:
+      - model_volume:/shared_data
+
+volumes:
+  model_volume:
