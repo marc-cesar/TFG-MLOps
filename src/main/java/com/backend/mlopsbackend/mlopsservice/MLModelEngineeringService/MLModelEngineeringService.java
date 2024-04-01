@@ -1,5 +1,7 @@
 package com.backend.mlopsbackend.mlopsservice.MLModelEngineeringService;
 
+import com.backend.mlopsbackend.Helpers.PythonScriptExecutor;
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.backend.mlopsbackend.Events.DataCollectionReadyEvent;
 import com.backend.mlopsbackend.Events.NewModelEvent;
+
+import java.io.File;
 
 @Component
 public class MLModelEngineeringService {
@@ -16,24 +20,18 @@ public class MLModelEngineeringService {
 
     @EventListener
     public void DataCollectionReadyListener(DataCollectionReadyEvent ev) {
-        ProcessBuilder pb = new ProcessBuilder("python",
-                "src/main/java/com/backend/mlopsbackend/mlopsservice/" +
-                        "MLModelEngineeringService/MLModelEngineeringService.py");
+        PythonScriptExecutor executor = new PythonScriptExecutor();
         try {
-            Process p = pb.start();
-            // Wait for the process to exit
-            int exitCode = p.waitFor();
-
-            if(exitCode == 0){
-                // Send New Model Event
+            File scriptFile = executor.ExtractFileFromResources("scripts/MLModelEngineeringService.py");
+            Pair<Integer,String> returnCode = executor.ExecutePythonScript(scriptFile, null, ev.dataPath, false);
+            // Exitcode is returncode.a (the first element of the pair)
+            if(returnCode.a == 0) // Executed Correctly
+                // Send Data Collection Ready Event
                 eventPublisher.publishEvent(new NewModelEvent());
-
-            } else {
-                System.out.println("ML model engineering script failed");
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+            else
+                System.out.println("ML Model Engineering script failed");
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
     }
     

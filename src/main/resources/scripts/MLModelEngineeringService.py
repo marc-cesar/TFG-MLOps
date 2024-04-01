@@ -3,6 +3,7 @@
 # Save the model in the model file in Data folder
 
 import io
+import sys
 from joblib import dump
 import joblib
 import pandas as pd
@@ -21,9 +22,9 @@ y_train = []
 y_test = []
 model = pd.DataFrame()
 
-def get_data():
+def get_data(data_file):
     global data
-    data = pd.read_csv("src/main/java/com/backend/mlopsbackend/Data/PreparedData.csv", delimiter=',', header=None)
+    data = pd.read_csv(data_file, delimiter=',', header=None)
 
 def data_splitting():
     global data, x, y ,x_train, x_test, y_train, y_test
@@ -58,7 +59,8 @@ def deploy_model():
         print("Failed to deploy model. Status code:", response.status_code)
 
 if __name__ == "__main__":
-    get_data()
+    data_path = sys.argv[2]
+    get_data(data_path)
     data_splitting()
     model_training()
     validate_model()

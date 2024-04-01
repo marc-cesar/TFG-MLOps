@@ -1,3 +1,4 @@
+import sys
 import mysql.connector
 import pandas as pd
 import os
@@ -9,10 +10,10 @@ import os
 
 data = []
 
-def data_collection():
+def data_collection(file_path):
     # Reads the data from the .data file and the database
     global data
-    data = pd.read_csv("src/main/java/com/backend/mlopsbackend/Data/german.data", index_col=False, delimiter=' ', header=None)
+    data = pd.read_csv(file_path, index_col=False, delimiter=' ', header=None)
 
 def read_data_from_database():
     global data
@@ -78,15 +79,20 @@ def feature_engineering():
     # Make some column joins
     pass
 
-def saveFile():
+def saveFile(output_dir):
+    output_path = os.path.join(output_dir, "PreparedData.csv")
+    # output_path = f"{output_dir}/PreparedData.csv"
     global data
-    data = data.to_csv('src/main/java/com/backend/mlopsbackend/Data/PreparedData.csv', index=False, header=False)
+    data = data.to_csv(output_path, index=False, header=False)
+    print(output_path) # Return the path inside the resources file
 
 
 if __name__ == "__main__":
-    data_collection()
+    output_dir = sys.argv[1]
+    csv_file_path = sys.argv[2]
+    data_collection(csv_file_path)
     data_preprocessing()
     data_transformation()
     #read_data_from_database()
     feature_engineering()
-    saveFile()
+    saveFile(output_dir)
