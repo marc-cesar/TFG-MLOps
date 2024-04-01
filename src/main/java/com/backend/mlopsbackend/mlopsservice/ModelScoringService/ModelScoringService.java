@@ -15,9 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.context.event.EventListener;
-import org.jpmml.evaluator.Evaluator;
-import org.jpmml.evaluator.loading.ModelEvaluatorBuilder;
-import org.jpmml.evaluator.EvaluatorUtil;
 
 import java.nio.file.Paths;
 
@@ -33,9 +30,7 @@ public class ModelScoringService {
     @Autowired
     private final RequestService RequestService;
 
-    private Model
-
-    private String ServiceDefaultURL = "http://flask-app:5000/";
+    private String ServiceDefaultURL = "http://127.0.0.1:5000/";
     
     public ModelScoringService(RestTemplate restTemplate, RequestService requestService) {
         this.restTemplate = restTemplate;
@@ -62,12 +57,13 @@ public class ModelScoringService {
 
     @EventListener
     public void NewModelListener(NewModelEvent ev) {
+        System.out.println("Model reloaded correctly");
         // Call Python to update model
-        String serviceUrl = ServiceDefaultURL + "NewModel";
-        ResponseEntity<Void> response = restTemplate.getForEntity(serviceUrl, Void.class);
-        if(response.getStatusCode() != HttpStatus.OK) {
-            System.out.println("Error connecting to the API while updating the model");
-        }
+        // String serviceUrl = ServiceDefaultURL + "NewModel";
+        // ResponseEntity<Void> response = restTemplate.getForEntity(serviceUrl, Void.class);
+        // if(response.getStatusCode() != HttpStatus.OK) {
+        //    System.out.println("Error connecting to the API while updating the model");
+        // }
     }
 
 

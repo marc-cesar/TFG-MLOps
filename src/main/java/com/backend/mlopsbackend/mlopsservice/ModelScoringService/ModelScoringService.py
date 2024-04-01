@@ -4,14 +4,16 @@ import joblib
 import time
 import datetime
 import pandas as pd
-from flask import Flask,request
+from flask import Flask,request, jsonify
+from io import BytesIO
 
-app = Flask(__name__)
 
 MODEL_VERSION_FILE = 'model_version.txt'
 last_checked = 0
 model_version = None
-model = pd.DataFrame()
+model = None
+
+app = Flask(__name__)
 
 def check_for_model_update():
     global model, last_checked, model_version
@@ -33,8 +35,6 @@ def update_model_version():
     with open(MODEL_VERSION_FILE, 'w') as file:
         file.write(timestamp)
 
-
-
 @app.route("/NewModel", methods=['GET'])
 def reload_model():
     # Write the file 
@@ -44,11 +44,31 @@ def reload_model():
 
 @app.route("/Predict", methods=['POST'])
 def predict():
-    check_for_model_update()
+    #print("test")
+    #check_for_model_update()
     global model
+    print(model)
     data = request.get_json()
     d = {str(key): [value[0]] for key, value in data.items()}
     df = pd.DataFrame(data=d)
+    print(df)
     predict = model.predict(df)[0]
     
     return str(predict) # (1 = Good,  2 = Bad) => (0 = Good, 1 = Bad)
+
+@app.route("/LoadModel", methods=['POST'])
+def loadModel():
+    global model
+    if 'model' not in request.files:
+        return jsonify({"error": "No model file"}), 400
+    model_file = request.files['model']
+    # Deserialize model
+    model_stream = BytesIO(model_file.read())
+    try:
+        model = joblib.load(model_stream)
+        return jsonify({"message": "Model received and loaded successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+if __name__ == '__main__':
+    app.run(debug=True)

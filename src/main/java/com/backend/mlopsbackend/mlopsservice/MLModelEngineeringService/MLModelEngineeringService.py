@@ -2,10 +2,15 @@
 # Create the model taking into account the data
 # Save the model in the model file in Data folder
 
+import io
+from joblib import dump
+import joblib
 import pandas as pd
 import pickle
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+import requests
+from sklearn.tree import DecisionTreeClassifier
 
 data = []
 x = []
@@ -18,7 +23,7 @@ model = pd.DataFrame()
 
 def get_data():
     global data
-    data = pd.read_csv("Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/Data/PreparedData.csv", delimiter=',', header=None)
+    data = pd.read_csv("src/main/java/com/backend/mlopsbackend/Data/PreparedData.csv", delimiter=',', header=None)
 
 def data_splitting():
     global data, x, y ,x_train, x_test, y_train, y_test
@@ -28,7 +33,7 @@ def data_splitting():
 
 def model_training():
     global x_train, y_train, model
-    model = LogisticRegression()
+    model = DecisionTreeClassifier()
     model.fit(x_train, y_train)
 
 def validate_model():
@@ -36,9 +41,21 @@ def validate_model():
     print("Model accuracy: ", model.score(x_test, y_test))
 
 def deploy_model():
+    # Send a post request so that the model scoring service loads the model
     global model
-    with open("Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/Data/model.pkl",'wb') as f:
-        pickle.dump(model, f)  
+    # with open('src/main/java/com/backend/mlopsbackend/Data/model.joblib','wb') as model_file:
+    #     joblib.dump(model,model_file)
+
+    buffer = io.BytesIO()
+    dump(model, buffer)
+    buffer.seek(0)
+    files = {'model': buffer}
+    response = requests.post("http://127.0.0.1:5000/LoadModel",files=files)
+    # It's good practice to check the response
+    if response.status_code == 200:
+        print("Model deployed successfully.")
+    else:
+        print("Failed to deploy model. Status code:", response.status_code)
 
 if __name__ == "__main__":
     get_data()

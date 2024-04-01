@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.mlopsservice.ModelMonitoringService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,12 @@ public class ModelMonitoringService {
 
     private int correctPredictions = 0;
     private int incorrectPredictions = 0;
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void runAfterStartup() {
+        // On init, publish a new retraining event so that the scoring service loads the model
+        eventPublisher.publishEvent(new NewRetrainingEvent());
+    }
 
 
 

@@ -19,7 +19,7 @@ public class DataEngineeringService {
     public void NewRetrainingListener(NewRetrainingEvent ev) {
         // Print working directory
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        ProcessBuilder pb = new ProcessBuilder("python", "MLOpsService/service/src/main/java/com/mlopsservice/DataEngineeringService/DataEngineeringService.py");
+        ProcessBuilder pb = new ProcessBuilder("python", "src/main/java/com/backend/mlopsbackend/mlopsservice/DataEngineeringService/DataEngineeringService.py");
         
         try {
             Process p = pb.start();

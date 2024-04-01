@@ -1,8 +1,13 @@
+import io
 import pandas as pd
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from flask import Flask
+import requests
+from io import BytesIO
+from joblib import dump
 
 data = []
 x = []
@@ -26,7 +31,7 @@ def Experimentate():
 def data_collection():
     # Reads the data from the .data file
     global data 
-    data = pd.read_csv("../../Data/german.data", delimiter=' ', header=None)
+    data = pd.read_csv("src/main/java/com/backend/mlopsbackend/Data/german.data", delimiter=' ', header=None)
 
 def data_preprocessing(): 
     # At the moment we will only delete the null values
@@ -38,7 +43,7 @@ def data_transformation():
     # Specific function for the expected data
     global data
     # Replaces all categorical values by natural numbers
-    data = pd.read_csv("../../Data/german.data", delimiter=' ', header=None)
+    data = pd.read_csv("src/main/java/com/backend/mlopsbackend/Data/german.data", delimiter=' ', header=None)
     data[0] = data[0].replace(['A11', 'A12', 'A13', 'A14'], [0, 1, 2, 3])
     data[2] = data[2].replace(['A30', 'A31', 'A32', 'A33', 'A34'], [0, 1, 2, 3, 4])
     data[3] = data[3].replace(['A40', 'A41', 'A42', 'A43', 'A44', 'A45', 'A46', 'A47', 'A48',
@@ -80,8 +85,20 @@ def validate_model():
 def deploy_model():
     # deploy model into production
     global model
-    with open('../../Data/model.pmml','wb') as model_file:
+    with open('src/main/java/com/backend/mlopsbackend/Data/model.joblib','wb') as model_file:
         joblib.dump(model,model_file)
+
+    buffer = io.BytesIO()
+    dump(model, buffer)
+        # IMPORTANT: Seek back to the start of the buffer
+    buffer.seek(0)
+    files = {'model': buffer}
+    response = requests.post("http://127.0.0.1:5000/LoadModel",files=files)
+    # It's good practice to check the response
+    if response.status_code == 200:
+        print("Model deployed successfully.")
+    else:
+        print("Failed to deploy model. Status code:", response.status_code)
 
 if __name__ == '__main__':
     Experimentate()

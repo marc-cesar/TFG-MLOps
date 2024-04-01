@@ -16,7 +16,9 @@ public class MLModelEngineeringService {
 
     @EventListener
     public void DataCollectionReadyListener(DataCollectionReadyEvent ev) {
-        ProcessBuilder pb = new ProcessBuilder("python", "Backend/mlopsbackend/src/main/java/com/backend/mlopsbackend/mlopsservice/MLModelEngineeringService/MLModelEngineeringService.py");
+        ProcessBuilder pb = new ProcessBuilder("python",
+                "src/main/java/com/backend/mlopsbackend/mlopsservice/" +
+                        "MLModelEngineeringService/MLModelEngineeringService.py");
         try {
             Process p = pb.start();
             // Wait for the process to exit
