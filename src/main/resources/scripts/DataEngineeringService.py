@@ -81,11 +81,9 @@ def feature_engineering():
 
 def saveFile(output_dir):
     output_path = os.path.join(output_dir, "PreparedData.csv")
-    # output_path = f"{output_dir}/PreparedData.csv"
     global data
     data = data.to_csv(output_path, index=False, header=False)
     print(output_path) # Return the path inside the resources file
-
 
 if __name__ == "__main__":
     output_dir = sys.argv[1]

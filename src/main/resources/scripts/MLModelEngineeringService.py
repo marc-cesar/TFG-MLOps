@@ -3,6 +3,7 @@
 # Save the model in the model file in Data folder
 
 import io
+import os
 import sys
 from joblib import dump
 import joblib
@@ -25,6 +26,7 @@ model = pd.DataFrame()
 def get_data(data_file):
     global data
     data = pd.read_csv(data_file, delimiter=',', header=None)
+    os.remove(data_file) # Remove the data from the temporal directory
 
 def data_splitting():
     global data, x, y ,x_train, x_test, y_train, y_test
