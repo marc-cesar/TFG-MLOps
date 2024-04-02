@@ -35,10 +35,11 @@ public class PythonScriptExecutor {
 
     // Executes the python script passed by parameter
     public Pair<Integer,String> ExecutePythonScript(File scriptFile, File dataFile, String dataPath, boolean needToGetReturnString ) throws Exception {
+        System.out.println("startingToExecuteScript");
         String tempDir = System.getProperty("java.io.tmpdir");
-
+        System.out.println("tempDir is " + tempDir);
         List<String> commands = new ArrayList<>();
-        commands.add("python");
+        commands.add("python3");
         commands.add(scriptFile.getAbsolutePath());
         commands.add(tempDir);
         if (dataFile != null){
@@ -47,6 +48,8 @@ public class PythonScriptExecutor {
         if (dataPath != null){
             commands.add(dataPath);
         }
+
+        System.out.println("commands are " + commands);
 
         ProcessBuilder processBuilder = new ProcessBuilder(commands);
         Process process = processBuilder.start();
@@ -62,7 +65,7 @@ public class PythonScriptExecutor {
         int exitCode = process.waitFor();
         if (exitCode != 0) {
             // Handle the case where the script execution failed
-            System.err.println("Script execution failed with exit code " + exitCode);
+            System.err.println("Script execution failed with exit code " + exitCode + " and output " +  output);
         }
         return new Pair<>(exitCode, output.toString());
     }

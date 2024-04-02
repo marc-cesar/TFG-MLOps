@@ -31,7 +31,7 @@ public class DataEngineeringService {
                 // Send Data Collection Ready Event
                 eventPublisher.publishEvent(new DataCollectionReadyEvent(returnPair.b));
             else
-                System.out.println("Data engineering script failed");
+                System.out.println("Data engineering script failed: " + returnPair.b);
         } catch (Exception ex){
             ex.printStackTrace();
         }

@@ -30,7 +30,7 @@ public class ModelScoringService {
     @Autowired
     private final RequestService RequestService;
 
-    private String ServiceDefaultURL = "http://127.0.0.1:5000/";
+    private String ServiceDefaultURL = "https://tfg-mlops-flask-app-7ceb82f39064.herokuapp.com/";
     
     public ModelScoringService(RestTemplate restTemplate, RequestService requestService) {
         this.restTemplate = restTemplate;

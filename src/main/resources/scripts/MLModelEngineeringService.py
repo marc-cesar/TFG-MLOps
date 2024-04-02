@@ -53,12 +53,13 @@ def deploy_model():
     dump(model, buffer)
     buffer.seek(0)
     files = {'model': buffer}
-    response = requests.post("http://127.0.0.1:5000/LoadModel",files=files)
+    print(buffer)
+    response = requests.post("https://tfg-mlops-flask-app-7ceb82f39064.herokuapp.com/LoadModel",files=files)
     # It's good practice to check the response
     if response.status_code == 200:
         print("Model deployed successfully.")
     else:
-        print("Failed to deploy model. Status code:", response.status_code)
+        print("Failed to deploy model. Status code:", response.status_code, response.text)
 
 if __name__ == "__main__":
     data_path = sys.argv[2]
