@@ -37,6 +37,11 @@ public class ModelScoringService {
         this.RequestService = requestService;
     }
 
+    @GetMapping(value="/")
+    public String HelloWorld(){
+        return "Hello World!";
+    }
+
     @PostMapping(value="/predict")
     public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
         // Call python and get prediction*/
