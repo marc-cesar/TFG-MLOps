@@ -1,12 +1,7 @@
 import sys
-import mysql.connector
+import psycopg2
 import pandas as pd
 import os
-# read the data from csv file
-# read the data from the database (requests)
-# if a request has feedback, take the feedback
-# Treat the data (preprocessing, transformation, feature engineering)
-# Save the data in the database (maybe return to the java file)
 
 data = []
 
@@ -15,24 +10,41 @@ def data_collection(file_path):
     global data
     data = pd.read_csv(file_path, index_col=False, delimiter=' ', header=None)
 
-def read_data_from_database():
+def read_data_from_database(dbname, user, password, host):
     global data
-    config = {
-        "user": "root",
-        "password": "root1234",
-        "host": "localhost",
-        "port": "3306",
-    }
+    conn = psycopg2.connect(dbname=dbname,user=user,password=password,host=host)
 
-    connection = mysql.connector.connect(**config)
-    cursor = connection.cursor()
-    cursor.execute("select * from mlops.requests")
+    cursor = conn.cursor()
+    cursor.execute("select" 
+                    + " field0"
+                    + ", field1"
+                    + ", field2"
+                    + ", field3"
+                    + ", field4"
+                    + ", field5"
+                    + ", field6"
+                    + ", field7"
+                    + ", field8"
+                    + ", field9"
+                    + ", field10"
+                    + ", field11"
+                    + ", field12"
+                    + ", field13"
+                    + ", field14"
+                    + ", field15"
+                    + ", field16"
+                    + ", field17"
+                    + ", field18"
+                    + ", field19"
+                    + ", prediction"
+                    + ", feedback" 
+                    + " from requests")
 
     rows_list = []
     for row in cursor.fetchall():
-        (id, field0, field1, field10, field11, field12, field13, field14, field15, field16,
-        field17, field18, field19, field2, field3, field4, field5, field6, field7, 
-        field8, field9, prediction, feedback) = row
+        (field0, field1, field2, field3, field4, field5, field6, field7,
+        field8, field9, field10, field11, field12, field13, field14, field15, field16, 
+        field17, field18, field19, prediction, feedback) = row
         # Check if there is feedback. If there is, take the feedback
         # Else, take the prediction given by the model
         if(feedback != None):
@@ -47,7 +59,8 @@ def read_data_from_database():
         field16, field17, field18, field19, solution]
 
     cursor.close()
-    connection.close()
+    conn.close()
+    print(data)
 
 def data_preprocessing():
     # At the moment we will only delete the null values
@@ -91,6 +104,10 @@ if __name__ == "__main__":
     data_collection(csv_file_path)
     data_preprocessing()
     data_transformation()
-    #read_data_from_database()
+    dbname = sys.argv[3]
+    user = sys.argv[4]
+    password = sys.argv[5]
+    host = sys.argv[6]
+    read_data_from_database(dbname, user, password, host)
     feature_engineering()
     saveFile(output_dir)

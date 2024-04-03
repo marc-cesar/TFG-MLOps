@@ -34,10 +34,8 @@ public class PythonScriptExecutor {
     }
 
     // Executes the python script passed by parameter
-    public Pair<Integer,String> ExecutePythonScript(File scriptFile, File dataFile, String dataPath, boolean needToGetReturnString ) throws Exception {
-        System.out.println("startingToExecuteScript");
+    public Pair<Integer,String> ExecutePythonScript(File scriptFile, File dataFile, String dataPath, boolean needToGetReturnString, boolean needsDatabase ) throws Exception {
         String tempDir = System.getProperty("java.io.tmpdir");
-        System.out.println("tempDir is " + tempDir);
         List<String> commands = new ArrayList<>();
         commands.add("python3");
         commands.add(scriptFile.getAbsolutePath());
@@ -48,8 +46,16 @@ public class PythonScriptExecutor {
         if (dataPath != null){
             commands.add(dataPath);
         }
-
-        System.out.println("commands are " + commands);
+        if (needsDatabase){
+            String database_name = System.getenv("DATABASE_NAME");
+            String database_username = System.getenv("DATABASE_USERNAME");
+            String database_password = System.getenv("DATABASE_PASSWORD");
+            String database_host = System.getenv("DATABASE_HOST");
+            commands.add(database_name);
+            commands.add(database_username);
+            commands.add(database_password);
+            commands.add(database_host);
+        }
 
         ProcessBuilder processBuilder = new ProcessBuilder(commands);
         Process process = processBuilder.start();

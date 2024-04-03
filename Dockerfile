@@ -31,7 +31,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install the required Python libraries
-RUN pip3 install mysql-connector-python pandas joblib scikit-learn pickle-mixin requests
+RUN pip3 install pandas joblib scikit-learn pickle-mixin requests psycopg2-binary
 
 # Copy the JAR file from the build stage
 COPY --from=build /home/app/target/*.jar /app/app.jar

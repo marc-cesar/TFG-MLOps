@@ -25,7 +25,7 @@ public class DataEngineeringService {
         try {
             File scriptFile = executor.ExtractFileFromResources("scripts/DataEngineeringService.py");
             File dataFile = executor.ExtractFileFromResources("data/german.data");
-            Pair<Integer,String> returnPair = executor.ExecutePythonScript(scriptFile,dataFile,null, true);
+            Pair<Integer,String> returnPair = executor.ExecutePythonScript(scriptFile,dataFile,null, true,true);
             // ExitCode, output
             if (returnPair.a == 0) // Executed correctly
                 // Send Data Collection Ready Event

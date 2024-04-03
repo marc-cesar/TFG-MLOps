@@ -16,9 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.context.event.EventListener;
 
-import java.nio.file.Paths;
-
-
 
 @RestController
 @RequestMapping("/api")
@@ -30,7 +27,7 @@ public class ModelScoringService {
     @Autowired
     private final RequestService RequestService;
 
-    private String ServiceDefaultURL = "https://tfg-mlops-flask-app-7ceb82f39064.herokuapp.com/";
+    private String PythonServiceURL = "https://tfg-mlops-flask-app-7ceb82f39064.herokuapp.com/";
     
     public ModelScoringService(RestTemplate restTemplate, RequestService requestService) {
         this.restTemplate = restTemplate;
@@ -45,7 +42,7 @@ public class ModelScoringService {
     @PostMapping(value="/predict")
     public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
         // Call python and get prediction*/
-        String serviceUrl = ServiceDefaultURL + "Predict";
+        String serviceUrl = PythonServiceURL + "Predict";
         System.err.println("Calling Python API");
         ResponseEntity<String> prediction = restTemplate.postForEntity(serviceUrl, param, String.class);
         // Create the request object and set its prediction
