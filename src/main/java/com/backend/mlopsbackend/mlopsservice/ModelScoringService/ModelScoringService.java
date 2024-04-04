@@ -48,7 +48,7 @@ public class ModelScoringService {
     public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
         // Call python and get prediction*/
         String serviceUrl = PythonServiceURL + "Predict";
-        System.err.println("Calling Python API");
+        System.err.println("Calling Python API!");
         ResponseEntity<String> prediction = restTemplate.postForEntity(serviceUrl, param, String.class);
 
         try { // Check if model is loaded
