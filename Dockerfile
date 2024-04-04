@@ -30,8 +30,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install the required Python libraries
-RUN pip3 install pandas joblib scikit-learn pickle-mixin requests psycopg2-binary
+# Copy the Python requirements file
+COPY requirements.txt /app/
+
+# Install the required Python libraries from requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the JAR file from the build stage
 COPY --from=build /home/app/target/*.jar /app/app.jar
