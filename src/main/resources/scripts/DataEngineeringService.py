@@ -1,5 +1,5 @@
 import sys
-#import psycopg2
+import psycopg2
 import pandas as pd
 import os
 
@@ -10,57 +10,57 @@ def data_collection(file_path):
     global data
     data = pd.read_csv(file_path, index_col=False, delimiter=' ', header=None)
 
-#def read_data_from_database(dbname, user, password, host):
-#    global data
-#    conn = psycopg2.connect(dbname=dbname,user=user,password=password,host=host)
-#
-#    cursor = conn.cursor()
-#    cursor.execute("select" 
-#                    + " field0"
-#                    + ", field1"
-#                    + ", field2"
-#                    + ", field3"
-#                    + ", field4"
-#                    + ", field5"
-#                    + ", field6"
-#                    + ", field7"
-#                    + ", field8"
-#                    + ", field9"
-#                    + ", field10"
-#                    + ", field11"
-#                    + ", field12"
-#                    + ", field13"
-#                    + ", field14"
-#                    + ", field15"
-#                    + ", field16"
-#                    + ", field17"
-#                    + ", field18"
-#                    + ", field19"
-#                    + ", prediction"
-#                    + ", feedback" 
-#                    + " from requests")
-#
-#    rows_list = []
-#    for row in cursor.fetchall():
-#        (field0, field1, field2, field3, field4, field5, field6, field7,
-#        field8, field9, field10, field11, field12, field13, field14, field15, field16, 
-#        field17, field18, field19, prediction, feedback) = row
-#        # Check if there is feedback. If there is, take the feedback
-#        # Else, take the prediction given by the model
-#        if(feedback != None):
-#            solution = feedback
-#        else:
-#            solution = prediction
-#
-#        next_index = len(data)
-#
-#        data.loc[next_index] = [field0, field1, field2, field3, field4, field5, field6, field7,
-#        field8, field9, field10, field11, field12, field13, field14, field15,
-#        field16, field17, field18, field19, solution]
-#
-#    cursor.close()
-#    conn.close()
-#    print(data)
+def read_data_from_database(dbname, user, password, host):
+    global data
+    conn = psycopg2.connect(dbname=dbname,user=user,password=password,host=host)
+
+    cursor = conn.cursor()
+    cursor.execute("select" 
+                    + " field0"
+                    + ", field1"
+                    + ", field2"
+                    + ", field3"
+                    + ", field4"
+                    + ", field5"
+                    + ", field6"
+                    + ", field7"
+                    + ", field8"
+                    + ", field9"
+                    + ", field10"
+                    + ", field11"
+                    + ", field12"
+                    + ", field13"
+                    + ", field14"
+                    + ", field15"
+                    + ", field16"
+                    + ", field17"
+                    + ", field18"
+                    + ", field19"
+                    + ", prediction"
+                    + ", feedback" 
+                    + " from requests")
+
+    rows_list = []
+    for row in cursor.fetchall():
+        (field0, field1, field2, field3, field4, field5, field6, field7,
+        field8, field9, field10, field11, field12, field13, field14, field15, field16, 
+        field17, field18, field19, prediction, feedback) = row
+        # Check if there is feedback. If there is, take the feedback
+        # Else, take the prediction given by the model
+        if(feedback != None):
+            solution = feedback
+        else:
+            solution = prediction
+
+        next_index = len(data)
+
+        data.loc[next_index] = [field0, field1, field2, field3, field4, field5, field6, field7,
+        field8, field9, field10, field11, field12, field13, field14, field15,
+        field16, field17, field18, field19, solution]
+
+    cursor.close()
+    conn.close()
+    print(data)
 
 def data_preprocessing():
     # At the moment we will only delete the null values
@@ -108,6 +108,6 @@ if __name__ == "__main__":
     user = sys.argv[4]
     password = sys.argv[5]
     host = sys.argv[6]
-    #read_data_from_database(dbname, user, password, host)
+    read_data_from_database(dbname, user, password, host)
     feature_engineering()
     saveFile(output_dir)
