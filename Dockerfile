@@ -26,12 +26,12 @@ WORKDIR /app
 
 # Install Python
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip libpq-dev && \
+    apt-get install -y python3 python3-pip libpq-dev python3-psycopg2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Install the required Python libraries
-RUN pip3 install pandas joblib scikit-learn pickle-mixin requests psycopg
+RUN pip3 install pandas joblib scikit-learn pickle-mixin requests
 
 # Copy the JAR file from the build stage
 COPY --from=build /home/app/target/*.jar /app/app.jar
