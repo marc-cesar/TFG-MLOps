@@ -3,14 +3,13 @@ package com.backend.mlopsbackend.mlopsservice.FeedBackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.backend.mlopsbackend.Entities.Request;
 import com.backend.mlopsbackend.Events.NewFeedbackEvent;
 import com.backend.mlopsbackend.Services.RequestService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -40,6 +39,11 @@ public class FeedBackService {
         requestService.save(rest);
         // Send new feedback event
         eventPublisher.publishEvent(new NewFeedbackEvent(rest));
+    }
+
+    @GetMapping(value="/getAllRequests")
+    public List<Request> getAllRequests(){
+        return requestService.getAllRequests();
     }
 
 }
