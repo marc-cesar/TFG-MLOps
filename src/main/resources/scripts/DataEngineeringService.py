@@ -60,7 +60,6 @@ def read_data_from_database(dbname, user, password, host):
 
     cursor.close()
     conn.close()
-    print(data)
 
 def data_preprocessing():
     # At the moment we will only delete the null values
