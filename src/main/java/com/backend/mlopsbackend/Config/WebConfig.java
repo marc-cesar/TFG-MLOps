@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200","http://localhost:80","http://localhost")
+                .allowedOrigins("http://localhost:4200","http://localhost:80","http://localhost", "https://tfg-mlops.netlify.app")
                 .allowedMethods("*")
                 .allowedHeaders("*");
     }
