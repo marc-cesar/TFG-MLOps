@@ -30,4 +30,3 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
         heroku container:release web --app $HEROKU_APP_NAME
-``
