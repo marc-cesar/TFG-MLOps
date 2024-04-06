@@ -40,10 +40,4 @@ public class FeedBackService {
         // Send new feedback event
         eventPublisher.publishEvent(new NewFeedbackEvent(rest));
     }
-
-    @GetMapping(value="/getAllRequests")
-    public List<Request> getAllRequests(){
-        return requestService.getAllRequests();
-    }
-
 }

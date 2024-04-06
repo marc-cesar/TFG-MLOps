@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.mlopsbackend.Entities.Request;
 import com.backend.mlopsbackend.Services.RequestService;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/requests")
 @ComponentScan(basePackages = "com.mlopsservice.Repositories")
@@ -26,8 +25,8 @@ public class RequestResource {
     }
 
     @GetMapping(value="/all")
-    public ResponseEntity<List<Request>> getAllRequests() {
-        return new ResponseEntity<>(requestService.getAllRequests(),HttpStatus.OK);
+    public List<Request> getAllRequests(){
+        return requestService.getAllRequests();
     }
 
     @GetMapping(value="/find/{id}")
