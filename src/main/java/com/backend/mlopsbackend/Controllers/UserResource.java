@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.Controllers;
 
 import com.backend.mlopsbackend.Entities.LoginRequest;
+import com.backend.mlopsbackend.Entities.LoginResponse;
 import com.backend.mlopsbackend.Entities.LogoutRequest;
 import com.backend.mlopsbackend.Services.UserService;
 import io.micrometer.core.ipc.http.HttpSender;
@@ -18,8 +19,8 @@ public class UserResource {
 
     public UserResource(UserService userResource) { this.userService = userResource; }
     @PostMapping("/logIn")
-    public ResponseEntity<String> login(@RequestBody LoginRequest req){
-        String token = userService.login(req.Username,req.Password);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req){
+        LoginResponse token = userService.login(req.Username,req.Password);
         return ResponseEntity.ok(token);
     }
 
@@ -31,9 +32,9 @@ public class UserResource {
     }
 
     @PostMapping("/signIn")
-    public ResponseEntity<String> signIn(@RequestBody LoginRequest req){
+    public ResponseEntity<LoginResponse> signIn(@RequestBody LoginRequest req){
         System.out.println(req.Username + ' ' +req.Password);
-        var token = userService.signIn(req.Username,req.Password);
+        LoginResponse token = userService.signIn(req.Username,req.Password);
 
         return ResponseEntity.ok(token);
     }

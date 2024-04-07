@@ -1,5 +1,6 @@
 package com.backend.mlopsbackend.Services;
 
+import com.backend.mlopsbackend.Entities.LoginResponse;
 import com.backend.mlopsbackend.Entities.UserToken;
 import com.backend.mlopsbackend.Helpers.EncryptionUtils;
 import com.backend.mlopsbackend.Repositories.UserRepository;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import com.backend.mlopsbackend.Entities.User;
+
+import java.util.Optional;
 
 @Service
 @ComponentScan(basePackages = "com.mlopsservice.Repositories")
@@ -18,14 +21,23 @@ public class UserService {
     @Autowired(required = true)
     private UserTokenRepository userTokenRepository;
 
-    public String login(String username, String password) {
-        User user = userRepository.findByUsername(username);
-
-        if (EncryptionUtils.matches(password,user.encryptedPassword)){
-            UserToken usrToken = createNewUserToken(user.id);
-            return usrToken.Token;
+    public LoginResponse login(String username, String password) {
+        LoginResponse response = new LoginResponse();
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()){
+            if (EncryptionUtils.matches(password,user.get().encryptedPassword)){
+                UserToken usrToken = createNewUserToken(user.get().id);
+                response.Token = usrToken.Token;
+            }
+            response.Username = username;
+            response.IsAdmin = user.get().IsAdmin;
+        } else {
+          response.Token = "";
+          response.Username = "";
+          response.IsAdmin = false;
         }
-        return "";
+
+        return response;
     }
 
     public UserToken createNewUserToken(Long userId) {
@@ -38,12 +50,13 @@ public class UserService {
     }
 
     public void logout(String username, String token) {
-        User user = userRepository.findByUsername(username);
+        Optional<User> user = userRepository.findByUsername(username);
         // Delete the userToken
-        userTokenRepository.deleteUsersTokenWithUserId(user.id, token);
+        user.ifPresent(value -> userTokenRepository.deleteUsersTokenWithUserId(value.id, token));
     }
 
-    public String signIn(String username, String password) {
+    public LoginResponse signIn(String username, String password) {
+        LoginResponse response = new LoginResponse();
         User user = new User();
         user.username = username;
         user.encryptedPassword = EncryptionUtils.hashString(password);
@@ -51,7 +64,11 @@ public class UserService {
         userRepository.save(user);
 
         var usrToken = createNewUserToken(user.id);
-        return usrToken.Token;
+        response.IsAdmin = false;
+        response.Token = usrToken.Token;
+        response.Username = username;
+
+        return response;
     }
 
     public void save(User user){
