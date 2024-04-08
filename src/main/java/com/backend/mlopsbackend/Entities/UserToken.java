@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Table(name="usertokens", schema = "public")
 public class UserToken {
     @Id
-    public String Token;
+    public String token;
     public long userId;
 
     public UserToken(){}

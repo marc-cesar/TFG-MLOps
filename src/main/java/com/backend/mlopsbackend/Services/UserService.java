@@ -27,7 +27,7 @@ public class UserService {
         if (user.isPresent()){
             if (EncryptionUtils.matches(password,user.get().encryptedPassword)){
                 UserToken usrToken = createNewUserToken(user.get().id);
-                response.Token = usrToken.Token;
+                response.Token = usrToken.token;
             }
             response.Username = username;
             response.IsAdmin = user.get().IsAdmin;
@@ -43,7 +43,7 @@ public class UserService {
     public UserToken createNewUserToken(Long userId) {
         // Insert new token to the UserTokens table
         UserToken userToken = new UserToken();
-        userToken.Token = EncryptionUtils.generateNewToken();
+        userToken.token = EncryptionUtils.generateNewToken();
         userToken.userId = userId;
         userTokenRepository.save(userToken);
         return userToken;
@@ -65,7 +65,7 @@ public class UserService {
 
         var usrToken = createNewUserToken(user.id);
         response.IsAdmin = false;
-        response.Token = usrToken.Token;
+        response.Token = usrToken.token;
         response.Username = username;
 
         return response;

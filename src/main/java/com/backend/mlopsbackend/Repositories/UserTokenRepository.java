@@ -17,7 +17,7 @@ import java.util.Optional;
 public interface UserTokenRepository extends JpaRepository<UserToken, Long> {
     @Modifying
     @Transactional
-    @Query("DELETE FROM UserToken ut WHERE ut.userId = ?1 AND ut.Token = ?2")
+    @Query("DELETE FROM UserToken ut WHERE ut.userId = ?1 AND ut.token = ?2")
     void deleteUsersTokenWithUserId(Long userid, String token);
 
     Optional<UserToken> findByToken(String token);
