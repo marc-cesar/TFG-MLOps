@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.mlopsservice.MLModelEngineeringService;
 
 import com.backend.mlopsbackend.Helpers.PythonScriptExecutor;
+import com.backend.mlopsbackend.Services.LogService;
 import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -18,8 +19,13 @@ public class MLModelEngineeringService {
     @Autowired
     private ApplicationEventPublisher eventPublisher;
 
+    @Autowired
+    private LogService logService;
+
     @EventListener
     public void DataCollectionReadyListener(DataCollectionReadyEvent ev) {
+        logService.Log("Data recollected - Starting to build the Machine Learning Model");
+
         PythonScriptExecutor executor = new PythonScriptExecutor();
         try {
             File scriptFile = executor.ExtractFileFromResources("scripts/MLModelEngineeringService.py");

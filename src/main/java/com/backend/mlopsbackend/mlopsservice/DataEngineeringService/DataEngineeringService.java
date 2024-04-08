@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.mlopsservice.DataEngineeringService;
 
 import com.backend.mlopsbackend.Helpers.PythonScriptExecutor;
+import com.backend.mlopsbackend.Services.LogService;
 import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -19,8 +20,13 @@ public class DataEngineeringService {
     @Autowired
     private ApplicationEventPublisher eventPublisher;
 
+    @Autowired
+    private LogService logService;
+
     @EventListener
     public void NewRetrainingListener(NewRetrainingEvent ev) throws Exception {
+        logService.Log("Starting Model training - Data engineering Service");
+
         PythonScriptExecutor executor = new PythonScriptExecutor();
         try {
             File scriptFile = executor.ExtractFileFromResources("scripts/DataEngineeringService.py");

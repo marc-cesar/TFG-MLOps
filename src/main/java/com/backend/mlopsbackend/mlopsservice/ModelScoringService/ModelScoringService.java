@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.mlopsservice.ModelScoringService;
 
 import com.backend.mlopsbackend.Events.NewRetrainingEvent;
+import com.backend.mlopsbackend.Services.LogService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.ApplicationEventPublisher;
@@ -30,6 +31,8 @@ public class ModelScoringService {
     @Autowired
     private final RequestService RequestService;
     @Autowired
+    private LogService logService;
+    @Autowired
     private ApplicationEventPublisher eventPublisher;
 
     private String PythonServiceURL = "https://tfg-mlops-flask-app-7ceb82f39064.herokuapp.com/";
@@ -48,7 +51,6 @@ public class ModelScoringService {
     public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
         // Call python and get prediction*/
         String serviceUrl = PythonServiceURL + "Predict";
-        System.err.println("Calling Python API!");
         ResponseEntity<String> prediction = restTemplate.postForEntity(serviceUrl, param, String.class);
 
         try { // Check if model is loaded
@@ -77,13 +79,7 @@ public class ModelScoringService {
 
     @EventListener
     public void NewModelListener(NewModelEvent ev) {
-        System.out.println("Model reloaded correctly");
-        // Call Python to update model
-        // String serviceUrl = ServiceDefaultURL + "NewModel";
-        // ResponseEntity<Void> response = restTemplate.getForEntity(serviceUrl, Void.class);
-        // if(response.getStatusCode() != HttpStatus.OK) {
-        //    System.out.println("Error connecting to the API while updating the model");
-        // }
+        logService.Log("Loaded New Model");
     }
 
 
