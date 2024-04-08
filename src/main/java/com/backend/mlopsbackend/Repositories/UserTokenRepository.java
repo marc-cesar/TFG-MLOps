@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Repository
 @ComponentScan(basePackages = "com.mlopsservice.Services")
@@ -17,4 +19,6 @@ public interface UserTokenRepository extends JpaRepository<UserToken, Long> {
     @Transactional
     @Query("DELETE FROM UserToken ut WHERE ut.userId = ?1 AND ut.Token = ?2")
     void deleteUsersTokenWithUserId(Long userid, String token);
+
+    Optional<UserToken> findByToken(String token);
 }

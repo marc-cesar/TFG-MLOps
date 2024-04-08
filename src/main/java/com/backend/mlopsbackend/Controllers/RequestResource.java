@@ -5,11 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.backend.mlopsbackend.Entities.Request;
 import com.backend.mlopsbackend.Services.RequestService;
@@ -25,7 +21,10 @@ public class RequestResource {
     }
 
     @GetMapping(value="/all")
-    public List<Request> getAllRequests(){
+    public List<Request> getAllRequests(@RequestParam(required = false) String token){
+        if (token != null){
+            return requestService.getRequestsByToken(token);
+        }
         return requestService.getAllRequests();
     }
 
