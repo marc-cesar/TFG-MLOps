@@ -47,7 +47,7 @@ public class PythonScriptExecutor {
             commands.add(dataPath);
         }
 
-        System.out.println(commands);
+        //System.out.println(commands.);
 
         if (needsDatabase){
             String database_name = System.getenv("DATABASE_NAME");
