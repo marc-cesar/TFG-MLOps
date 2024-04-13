@@ -17,8 +17,9 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // Auto generate id
-
     private Long id;
+
+    public Long requesterId;
 
     // The 20 fields info
     private String field0;

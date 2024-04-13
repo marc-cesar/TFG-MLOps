@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,10 @@ public class RequestResource {
     }
 
     @GetMapping(value="/all")
-    public List<Request> getAllRequests(@RequestParam(required = false) String token){
+    public List<Request> getAllRequests(@RequestParam String token){
         if (token != null){
-            return requestService.getRequestsByToken(token);
+            Optional<List<Request>> requests = requestService.getRequestsByToken(token);
+            return requests.orElse(null);
         }
         return requestService.getAllRequests();
     }

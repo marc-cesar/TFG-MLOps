@@ -71,6 +71,22 @@ public class UserService {
         return response;
     }
 
+    public boolean isUserAdmin(String token) {
+        Optional<User> User = getUserFromToken(token);
+        return User.isPresent() && User.get().IsAdmin;
+    }
+
+    public boolean isUserViewer(String token){
+        Optional<User> User = getUserFromToken(token);
+        return User.isPresent();
+    }
+
+    public Optional<User> getUserFromToken(String token){
+        Optional<UserToken> usrtok = userTokenRepository.findByToken(token);
+        // Get the user
+        return usrtok.map(userToken -> userRepository.findById(userToken.userId)).orElse(null);
+    }
+
     public void save(User user){
         userRepository.save(user);
     }

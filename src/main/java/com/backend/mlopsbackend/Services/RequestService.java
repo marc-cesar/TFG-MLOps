@@ -25,6 +25,9 @@ public class RequestService {
 
     @Autowired(required = true)
     private UserRepository userRepository;
+
+    @Autowired(required = true)
+    private UserService userService;
     
     public Request getById(Long id) {
         return requestRepository.findById(id).orElse(null);
@@ -34,17 +37,13 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    public List<Request> getRequestsByToken(String token){
-        Optional<UserToken> usr = userTokenRepository.findByToken(token);
-
-        if (usr.isPresent()){
-            Long userid = usr.get().userId;
-            User user = userRepository.getReferenceById(userid);
-            return requestRepository.findAll(); // Add a username
-        }
-
-        return null;
-
+    public Optional<List<Request>> getRequestsByToken(String token){
+        Optional<User> user = userService.getUserFromToken(token);
+        if (user.isPresent()){
+            User loggedUser = user.get();
+            return loggedUser.IsAdmin ? Optional.of(requestRepository.findAll()) : requestRepository.findAllByRequesterId(loggedUser.id);
+        } else
+            return Optional.empty();
     }
 
     public void save(Request request) {
