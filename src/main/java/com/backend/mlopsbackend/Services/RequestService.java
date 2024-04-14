@@ -1,7 +1,6 @@
 package com.backend.mlopsbackend.Services;
 
 import com.backend.mlopsbackend.Entities.User;
-import com.backend.mlopsbackend.Entities.UserToken;
 import com.backend.mlopsbackend.Repositories.UserRepository;
 import com.backend.mlopsbackend.Repositories.UserTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class RequestService {
         Optional<User> user = userService.getUserFromToken(token);
         if (user.isPresent()){
             User loggedUser = user.get();
-            return loggedUser.IsAdmin ? Optional.of(requestRepository.findAll()) : requestRepository.findAllByRequesterId(loggedUser.id);
+            return loggedUser.isAdmin ? Optional.of(requestRepository.findAll()) : requestRepository.findAllByRequesterId(loggedUser.id);
         } else
             return Optional.empty();
     }

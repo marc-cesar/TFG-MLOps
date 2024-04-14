@@ -11,7 +11,11 @@ public class User {
     @Column(unique = true)
     public String username;
     public String encryptedPassword;
-    public Boolean IsAdmin = false;
+    public Boolean isAdmin = false;
 
     public User(){}
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
 }

@@ -5,11 +5,13 @@ import com.backend.mlopsbackend.Entities.UserToken;
 import com.backend.mlopsbackend.Helpers.EncryptionUtils;
 import com.backend.mlopsbackend.Repositories.UserRepository;
 import com.backend.mlopsbackend.Repositories.UserTokenRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import com.backend.mlopsbackend.Entities.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,7 +32,7 @@ public class UserService {
                 response.Token = usrToken.token;
             }
             response.Username = username;
-            response.IsAdmin = user.get().IsAdmin;
+            response.IsAdmin = user.get().isAdmin;
         } else {
           response.Token = "";
           response.Username = "";
@@ -73,7 +75,7 @@ public class UserService {
 
     public boolean isUserAdmin(String token) {
         Optional<User> User = getUserFromToken(token);
-        return User.isPresent() && User.get().IsAdmin;
+        return User.isPresent() && User.get().isAdmin;
     }
 
     public boolean isUserViewer(String token){
@@ -89,6 +91,26 @@ public class UserService {
         // Get the user
         return usrtok.flatMap(userToken -> userRepository.findById(userToken.userId));
     }
+
+    public Optional<List<User>> getAdminUsers(){
+        return userRepository.findUsersByIsAdminTrueOrderById();
+    }
+
+    @Transactional
+    public Boolean setAdminUser(String username, Boolean setOrUnset){
+        try {
+            Optional<User> user = userRepository.findByUsername(username);
+            if(user.isPresent()){
+                user.get().setAdmin(setOrUnset);
+                userRepository.save(user.get());
+                return true;
+            }
+            return false;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
 
     public void save(User user){
         userRepository.save(user);
