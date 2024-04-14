@@ -83,8 +83,11 @@ public class UserService {
 
     public Optional<User> getUserFromToken(String token){
         Optional<UserToken> usrtok = userTokenRepository.findByToken(token);
+        if (usrtok.isEmpty()){
+            return Optional.empty();
+        }
         // Get the user
-        return usrtok.map(userToken -> userRepository.findById(userToken.userId)).orElse(null);
+        return usrtok.flatMap(userToken -> userRepository.findById(userToken.userId));
     }
 
     public void save(User user){
@@ -94,4 +97,5 @@ public class UserService {
     public void save(UserToken usertoken){
         userTokenRepository.save(usertoken);
     }
+
 }
