@@ -1,5 +1,7 @@
 package com.backend.mlopsbackend.mlopsservice.ModelMonitoringService;
 
+import com.backend.mlopsbackend.Entities.RetrainingConfiguration;
+import com.backend.mlopsbackend.Repositories.RetrainingConfigurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEventPublisher;
@@ -16,6 +18,9 @@ public class ModelMonitoringService {
 
     @Autowired
     private ApplicationEventPublisher eventPublisher;
+
+    @Autowired
+    private RetrainingConfigurationRepository retrainingConfigurationRepository;
 
     private int correctPredictions = 0;
     private int incorrectPredictions = 0;
@@ -38,12 +43,25 @@ public class ModelMonitoringService {
             incorrectPredictions++;
         }
 
-        // Condition to be changed
-        if(correctPredictions + incorrectPredictions == 10){
+        if(NeedsRetraining()){
             // Send event to retrain the model
                 eventPublisher.publishEvent(new NewRetrainingEvent());
                 correctPredictions = 0;
                 incorrectPredictions = 0;
         }
+    }
+
+    public Boolean NeedsRetraining(){
+        // Get the entity
+        RetrainingConfiguration config = this.retrainingConfigurationRepository.findTopBy();
+        if (config == null){
+           // Create the config instance for the first time
+           config = new RetrainingConfiguration();
+           config.setMinimumRequests(10);
+           config.setSuccessPercentage(60);
+           retrainingConfigurationRepository.save(config);
+        }
+        return (correctPredictions * 100) / (incorrectPredictions + correctPredictions) < config.getSuccessPercentage()
+                && correctPredictions + incorrectPredictions > config.getMinimumRequests();
     }
 }

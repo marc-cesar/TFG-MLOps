@@ -2,6 +2,7 @@ package com.backend.mlopsbackend.Controllers;
 
 import com.backend.mlopsbackend.Entities.User;
 import com.backend.mlopsbackend.Events.NewRetrainingEvent;
+import com.backend.mlopsbackend.Services.LogService;
 import com.backend.mlopsbackend.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -24,6 +25,26 @@ public class AdminResource {
 
     @Autowired(required = true)
     private UserService userService;
+
+    @Autowired(required = true)
+    private LogService logService;
+
+    @GetMapping("/getRetrainingConfiguration")
+    public ResponseEntity<Object> getRetrainingConfiguration(@RequestParam String token){
+        if(userService.isUserAdmin(token)){
+            return ResponseEntity.ok(Collections.singletonMap("config", logService.getRetrainingConfiguration() ));
+        }
+        return ResponseEntity.ok(Collections.singletonMap("error", "Access denied. User must be an admin"));
+    }
+
+    @PostMapping("/setRetrainingConfiguration")
+    public ResponseEntity<Map<String,String>> setRetrainingConfiguration(@RequestParam String token, @RequestParam Integer minimumRequests, @RequestParam Integer successPercentage){
+        if(userService.isUserAdmin(token)){
+            String message = logService.setRetrainingConfiguration(minimumRequests, successPercentage) ? "Configuration set properly" : "There was an error.";
+            return ResponseEntity.ok(Collections.singletonMap("message", message ));
+        }
+        return ResponseEntity.ok(Collections.singletonMap("error", "Access denied. User must be an admin"));
+    }
 
     @PostMapping("/forceRetraining")
     public ResponseEntity<Map<String, String>> forceRetraining(@RequestParam String token){
