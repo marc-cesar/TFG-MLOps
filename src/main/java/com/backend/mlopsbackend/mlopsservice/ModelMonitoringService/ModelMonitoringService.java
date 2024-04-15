@@ -2,6 +2,7 @@ package com.backend.mlopsbackend.mlopsservice.ModelMonitoringService;
 
 import com.backend.mlopsbackend.Entities.RetrainingConfiguration;
 import com.backend.mlopsbackend.Repositories.RetrainingConfigurationRepository;
+import com.backend.mlopsbackend.Services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEventPublisher;
@@ -21,6 +22,9 @@ public class ModelMonitoringService {
 
     @Autowired
     private RetrainingConfigurationRepository retrainingConfigurationRepository;
+
+    @Autowired
+    private LogService logService;
 
     private int correctPredictions = 0;
     private int incorrectPredictions = 0;
@@ -45,9 +49,10 @@ public class ModelMonitoringService {
 
         if(NeedsRetraining()){
             // Send event to retrain the model
-                eventPublisher.publishEvent(new NewRetrainingEvent());
-                correctPredictions = 0;
-                incorrectPredictions = 0;
+            logService.Log("The model is starting to retrain after the feedback given by the user.");
+            eventPublisher.publishEvent(new NewRetrainingEvent());
+            correctPredictions = 0;
+            incorrectPredictions = 0;
         }
     }
 

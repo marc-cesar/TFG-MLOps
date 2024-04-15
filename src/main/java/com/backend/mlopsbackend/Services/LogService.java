@@ -40,6 +40,7 @@ public class LogService {
         if(config != null){
             config.setSuccessPercentage(successPercentage);
             config.setMinimumRequests(minimumRequests);
+            this.Log("Retrainment parameters changed.");
             this.retrainingConfigurationRepository.save(config);
             return true;
         }

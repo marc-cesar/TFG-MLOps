@@ -49,6 +49,7 @@ public class AdminResource {
     @PostMapping("/forceRetraining")
     public ResponseEntity<Map<String, String>> forceRetraining(@RequestParam String token){
         if (userService.isUserAdmin(token)){
+            logService.Log("An administrator requested a model retraining.");
             eventPublisher.publishEvent(new NewRetrainingEvent());
             return ResponseEntity.ok(Collections.singletonMap("message", "Retraining process finished successfully. Check logs for more details"));
         }
