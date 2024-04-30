@@ -39,9 +39,8 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Copy the JAR file from the build stage
 COPY --from=build /home/app/target/*.jar /app/app.jar
 
-# Expose the port your app uses
+# Expose the port the app uses
 EXPOSE 8080
 
-# Command to run your app
+# Command to run the app
 CMD java -jar app.jar --server.port=$PORT
-#CMD ["java", "-jar", "app.jar"]
