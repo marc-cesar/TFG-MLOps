@@ -1,6 +1,7 @@
 package com.backend.mlopsbackend.Entities;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class Request {
     public Client client;
 
     @Column(name="approval_time", nullable = false)
-    public Time approvalTime = Time.valueOf(LocalTime.MIN);
+    public Timestamp approvalTime;
 
     // The 20 fields info
     private String field0;

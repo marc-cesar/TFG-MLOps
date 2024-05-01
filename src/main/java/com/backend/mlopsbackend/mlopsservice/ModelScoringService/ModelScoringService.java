@@ -78,7 +78,7 @@ public class ModelScoringService {
 
         // Create the request object and set its prediction
         Request req = new Request();
-        req.approvalTime = Time.valueOf(LocalTime.now());
+        req.approvalTime = new Timestamp(System.currentTimeMillis());
         req.SetValuesFromMap(param);
         req.setPrediction(prediction.getBody());
 
