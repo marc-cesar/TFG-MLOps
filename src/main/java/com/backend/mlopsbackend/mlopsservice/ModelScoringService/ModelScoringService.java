@@ -1,7 +1,11 @@
 package com.backend.mlopsbackend.mlopsservice.ModelScoringService;
 
+import com.backend.mlopsbackend.Entities.Client;
+import com.backend.mlopsbackend.Entities.User;
 import com.backend.mlopsbackend.Events.NewRetrainingEvent;
+import com.backend.mlopsbackend.Services.ClientService;
 import com.backend.mlopsbackend.Services.LogService;
+import com.backend.mlopsbackend.Services.UserService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.ApplicationEventPublisher;
@@ -13,6 +17,9 @@ import com.backend.mlopsbackend.Entities.Request;
 import com.backend.mlopsbackend.Events.NewModelEvent;
 import com.backend.mlopsbackend.Services.RequestService;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +40,10 @@ public class ModelScoringService {
     @Autowired
     private LogService logService;
     @Autowired
+    private UserService userService;
+    @Autowired
+    private ClientService clientService;
+    @Autowired
     private ApplicationEventPublisher eventPublisher;
 
     private String PythonServiceURL = "https://tfg-mlops-flask-app-7ceb82f39064.herokuapp.com/";
@@ -48,7 +59,7 @@ public class ModelScoringService {
     }
 
     @PostMapping(value="/predict")
-    public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param) {
+    public ResponseEntity<PredictionResponse> predict(@RequestBody Map<String,List<Integer>> param, @RequestParam String token, @RequestParam String dni) {
         // Call python and get prediction*/
         String serviceUrl = PythonServiceURL + "Predict";
         ResponseEntity<String> prediction = restTemplate.postForEntity(serviceUrl, param, String.class);
@@ -67,8 +78,25 @@ public class ModelScoringService {
 
         // Create the request object and set its prediction
         Request req = new Request();
+        req.approvalTime = Time.valueOf(LocalTime.now());
         req.SetValuesFromMap(param);
         req.setPrediction(prediction.getBody());
+
+        Optional<User> user = userService.getUserFromToken(token);
+        user.ifPresent(value -> req.requesterId = value.id);
+
+        // GetClient
+        Optional<Client> client = clientService.getClientFromDNI(dni);
+        client.ifPresentOrElse(
+                client1 -> req.client = client1,
+                () -> {
+                    Client clientNew = new Client();
+                    clientNew.dni = dni;
+                    clientService.SaveClient(clientNew);
+                    req.client = clientNew;
+                    req.client.dni = dni;
+                }
+        );
 
         RequestService.save(req);
 

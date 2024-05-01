@@ -1,14 +1,14 @@
 package com.backend.mlopsbackend.Entities;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Map;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="requests", schema = "public")
@@ -20,6 +20,14 @@ public class Request {
     private Long id;
 
     public Long requesterId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    @JsonManagedReference
+    public Client client;
+
+    @Column(name="approval_time", nullable = false)
+    public Time approvalTime = Time.valueOf(LocalTime.MIN);
 
     // The 20 fields info
     private String field0;
