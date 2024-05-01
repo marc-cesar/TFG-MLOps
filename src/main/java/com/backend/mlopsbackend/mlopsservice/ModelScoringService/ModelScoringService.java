@@ -107,7 +107,7 @@ public class ModelScoringService {
 
     @EventListener
     public void NewModelListener(NewModelEvent ev) {
-        logService.Log("Loaded New Model");
+        logService.Log("New Model Loaded");
     }
 
 

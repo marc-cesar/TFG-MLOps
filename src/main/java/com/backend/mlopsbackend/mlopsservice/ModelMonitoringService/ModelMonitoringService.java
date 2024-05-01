@@ -49,7 +49,6 @@ public class ModelMonitoringService {
 
         if(NeedsRetraining()){
             // Send event to retrain the model
-            logService.Log("The model is starting to retrain after the feedback given by the user.");
             eventPublisher.publishEvent(new NewRetrainingEvent());
             correctPredictions = 0;
             incorrectPredictions = 0;

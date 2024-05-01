@@ -25,8 +25,6 @@ public class DataEngineeringService {
 
     @EventListener
     public void NewRetrainingListener(NewRetrainingEvent ev) throws Exception {
-        logService.Log("Starting Model training - Data engineering Service");
-
         PythonScriptExecutor executor = new PythonScriptExecutor();
         try {
             File scriptFile = executor.ExtractFileFromResources("scripts/DataEngineeringService.py");

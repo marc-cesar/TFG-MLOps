@@ -24,8 +24,6 @@ public class MLModelEngineeringService {
 
     @EventListener
     public void DataCollectionReadyListener(DataCollectionReadyEvent ev) {
-        logService.Log("Data recollected - Starting to build the Machine Learning Model");
-
         PythonScriptExecutor executor = new PythonScriptExecutor();
         try {
             File scriptFile = executor.ExtractFileFromResources("scripts/MLModelEngineeringService.py");

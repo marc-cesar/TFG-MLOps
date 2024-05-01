@@ -23,11 +23,12 @@ public class FeedBackService {
     private ApplicationEventPublisher eventPublisher;
 
     @PostMapping(value="/giveFeedback")
-    public void predict(@RequestParam Long id, @RequestParam Boolean isCorrect) {
+    public void giveFeedback(@RequestParam Long id, @RequestParam Boolean isCorrect) {
         // Get from database the request with the given id
         Request rest = requestService.getById(id);
         String prediction = rest.getPrediction();
         String feedback;
+        rest.setFeedback(isCorrect ? "0" : "1");
         if(isCorrect) {
             feedback = prediction;
         } else {
