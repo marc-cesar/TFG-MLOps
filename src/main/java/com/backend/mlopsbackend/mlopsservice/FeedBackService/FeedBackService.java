@@ -29,13 +29,6 @@ public class FeedBackService {
         String prediction = rest.getPrediction();
         String feedback;
         rest.setFeedback(isCorrect ? "0" : "1");
-        if(isCorrect) {
-            feedback = prediction;
-        } else {
-            feedback = prediction.equals("0") ? "1" : "0";
-        }
-        // Set its feedback
-        rest.setFeedback(feedback);
         // Save it to database
         requestService.save(rest);
         // Send new feedback event
