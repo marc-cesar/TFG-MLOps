@@ -16,35 +16,35 @@ def read_data_from_database(dbname, user, password, host):
 
     cursor = conn.cursor()
     cursor.execute("select" 
-                    + " field0"
-                    + ", field1"
-                    + ", field2"
-                    + ", field3"
-                    + ", field4"
-                    + ", field5"
-                    + ", field6"
-                    + ", field7"
-                    + ", field8"
-                    + ", field9"
-                    + ", field10"
-                    + ", field11"
-                    + ", field12"
-                    + ", field13"
-                    + ", field14"
-                    + ", field15"
-                    + ", field16"
-                    + ", field17"
-                    + ", field18"
-                    + ", field19"
+                    + " statusExistingAccount"
+                    + ", monthsDuration"
+                    + ", creditHistory"
+                    + ", purpose"
+                    + ", creditAmount"
+                    + ", savingAccount"
+                    + ", presentEmploymentSince"
+                    + ", installmentPercentage"
+                    + ", statusAndSex"
+                    + ", otherDebtors"
+                    + ", presentResidenceSince"
+                    + ", property"
+                    + ", ageInYears"
+                    + ", otherInstallmentPlans"
+                    + ", housing"
+                    + ", numberOfExistingCredits"
+                    + ", job"
+                    + ", peopleToProvideMaintenance"
+                    + ", telephoneNumber"
+                    + ", foreignWorker"
                     + ", prediction"
                     + ", feedback" 
                     + " from requests")
 
     rows_list = []
     for row in cursor.fetchall():
-        (field0, field1, field2, field3, field4, field5, field6, field7,
-        field8, field9, field10, field11, field12, field13, field14, field15, field16, 
-        field17, field18, field19, prediction, feedback) = row
+        (statusExistingAccount, monthsDuration, creditHistory, purpose, creditAmount, savingAccount, presentEmploymentSince, installmentPercentage,
+        statusAndSex, otherDebtors, presentResidenceSince, property, ageInYears, otherInstallmentPlans, housing, numberOfExistingCredits, job, 
+        peopleToProvideMaintenance, telephoneNumber, foreignWorker, prediction, feedback) = row
         # Check if there is feedback. If there is, take the feedback
         # Else, take the prediction given by the model
         if(feedback != None):
@@ -54,9 +54,9 @@ def read_data_from_database(dbname, user, password, host):
 
         next_index = len(data)
 
-        data.loc[next_index] = [field0, field1, field2, field3, field4, field5, field6, field7,
-        field8, field9, field10, field11, field12, field13, field14, field15,
-        field16, field17, field18, field19, solution]
+        data.loc[next_index] = [statusExistingAccount, monthsDuration, creditHistory, purpose, creditAmount, savingAccount, presentEmploymentSince, installmentPercentage,
+        statusAndSex, otherDebtors, presentResidenceSince, property, ageInYears, otherInstallmentPlans, housing, numberOfExistingCredits, job, 
+        peopleToProvideMaintenance, telephoneNumber, foreignWorker, solution]
 
     cursor.close()
     conn.close()

@@ -1,15 +1,15 @@
 package com.backend.mlopsbackend.Events;
 
-import com.backend.mlopsbackend.Entities.Request;
+import com.backend.mlopsbackend.Entities.Assessment;
 
 public class NewFeedbackEvent {
-    Request req;
+    Assessment req;
 
-    public NewFeedbackEvent(Request req) {
+    public NewFeedbackEvent(Assessment req) {
         this.req = req;
     }
 
-    public Request getRequest(){
+    public Assessment getRequest(){
         return req;
     }
 }

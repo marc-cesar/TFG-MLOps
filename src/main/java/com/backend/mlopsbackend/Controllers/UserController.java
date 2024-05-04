@@ -1,5 +1,8 @@
 package com.backend.mlopsbackend.Controllers;
 
+import com.backend.mlopsbackend.Entities.LoginRequest;
+import com.backend.mlopsbackend.Entities.LoginResponse;
+import com.backend.mlopsbackend.Entities.LogoutRequest;
 import com.backend.mlopsbackend.Entities.User;
 import com.backend.mlopsbackend.Events.NewRetrainingEvent;
 import com.backend.mlopsbackend.Services.LogService;
@@ -10,26 +13,49 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin")
 @ComponentScan(basePackages = "com.mlopsservice.Repositories")
-public class AdminResource {
+public class UserController {
+    @Autowired(required = true)
+    private LogService logService;
 
     @Autowired
     private ApplicationEventPublisher eventPublisher;
 
-    @Autowired(required = true)
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired(required = true)
-    private LogService logService;
+    public UserController(UserService userResource) { this.userService = userResource; }
+    @PostMapping("/user/logIn")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest req){
+        LoginResponse token = userService.login(req.Username,req.Password);
+        return ResponseEntity.ok(token);
+    }
 
-    @GetMapping("/getRetrainingConfiguration")
+    @PostMapping("/user/logout")
+    public ResponseEntity<String> logout(@RequestBody LogoutRequest req){
+        userService.logout(req.Username,req.Token);
+
+        return ResponseEntity.ok("");
+    }
+
+    @PostMapping("/user/signIn")
+    public ResponseEntity<LoginResponse> signIn(@RequestBody LoginRequest req){
+        System.out.println(req.Username + ' ' +req.Password);
+        LoginResponse token = userService.signIn(req.Username,req.Password);
+
+        return ResponseEntity.ok(token);
+    }
+
+    /* ADMIN */
+
+    @GetMapping("/admin/getRetrainingConfiguration")
     public ResponseEntity<Object> getRetrainingConfiguration(@RequestParam String token){
         if(userService.isUserAdmin(token)){
             return ResponseEntity.ok(Collections.singletonMap("config", logService.getRetrainingConfiguration() ));
@@ -37,7 +63,7 @@ public class AdminResource {
         return ResponseEntity.ok(Collections.singletonMap("error", "Access denied. User must be an admin"));
     }
 
-    @PostMapping("/setRetrainingConfiguration")
+    @PostMapping("/admin/setRetrainingConfiguration")
     public ResponseEntity<Map<String,String>> setRetrainingConfiguration(@RequestParam String token, @RequestParam Integer minimumRequests, @RequestParam Integer successPercentage){
         if(userService.isUserAdmin(token)){
             String message = logService.setRetrainingConfiguration(minimumRequests, successPercentage) ? "Configuration set properly" : "There was an error.";
@@ -46,7 +72,7 @@ public class AdminResource {
         return ResponseEntity.ok(Collections.singletonMap("error", "Access denied. User must be an admin"));
     }
 
-    @PostMapping("/forceRetraining")
+    @PostMapping("/admin/forceRetraining")
     public ResponseEntity<Map<String, String>> forceRetraining(@RequestParam String token){
         if (userService.isUserAdmin(token)){
             eventPublisher.publishEvent(new NewRetrainingEvent());
@@ -55,7 +81,7 @@ public class AdminResource {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Collections.singletonMap("error", "Access denied. User must be an admin"));
     }
 
-    @GetMapping("/getAllAdmins")
+    @GetMapping("/admin/getAllAdmins")
     public ResponseEntity<Object> getAllAdmins(@RequestParam String token){
         if (userService.isUserAdmin(token)){
             return ResponseEntity.ok(Collections.singletonMap("users", userService.getAdminUsers()));
@@ -63,12 +89,12 @@ public class AdminResource {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Collections.singletonMap("error", "Access denied. User must be an admin"));
     }
 
-    @PostMapping("/setUserAdmin")
+    @PostMapping("/admin/setUserAdmin")
     public ResponseEntity<Object> setUserAdmin(@RequestParam String username, @RequestParam String token){
         return setOrUnsetAdmin(username, token, true);
     }
 
-    @PostMapping("/unsetUserAdmin")
+    @PostMapping("/admin/unsetUserAdmin")
     public ResponseEntity<Object> unsetUserAdmin(@RequestParam String username, @RequestParam String token){
         return setOrUnsetAdmin(username, token, false);
     }

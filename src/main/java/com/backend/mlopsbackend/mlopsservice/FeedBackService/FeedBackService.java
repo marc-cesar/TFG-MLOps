@@ -5,11 +5,9 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import com.backend.mlopsbackend.Entities.Request;
+import com.backend.mlopsbackend.Entities.Assessment;
 import com.backend.mlopsbackend.Events.NewFeedbackEvent;
 import com.backend.mlopsbackend.Services.RequestService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -25,7 +23,7 @@ public class FeedBackService {
     @PostMapping(value="/giveFeedback")
     public void giveFeedback(@RequestParam Long id, @RequestParam Boolean isCorrect) {
         // Get from database the request with the given id
-        Request rest = requestService.getById(id);
+        Assessment rest = requestService.getById(id);
         String prediction = rest.getPrediction();
         String feedback;
         rest.setFeedback(isCorrect ? "0" : "1");

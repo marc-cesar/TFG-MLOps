@@ -1,7 +1,6 @@
 package com.backend.mlopsbackend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,5 +19,5 @@ public class Client {
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     @JsonBackReference
-    public List<Request> Requests = new ArrayList<>();
+    public List<Assessment> assessments = new ArrayList<>();
 }

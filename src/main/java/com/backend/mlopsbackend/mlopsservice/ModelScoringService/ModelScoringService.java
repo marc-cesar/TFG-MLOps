@@ -3,7 +3,7 @@ package com.backend.mlopsbackend.mlopsservice.ModelScoringService;
 import com.backend.mlopsbackend.Entities.Client;
 import com.backend.mlopsbackend.Entities.User;
 import com.backend.mlopsbackend.Events.NewRetrainingEvent;
-import com.backend.mlopsbackend.Services.ClientService;
+import com.backend.mlopsbackend.Repositories.ClientRepository;
 import com.backend.mlopsbackend.Services.LogService;
 import com.backend.mlopsbackend.Services.UserService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import com.backend.mlopsbackend.Entities.PredictionResponse;
-import com.backend.mlopsbackend.Entities.Request;
+import com.backend.mlopsbackend.Entities.Assessment;
 import com.backend.mlopsbackend.Events.NewModelEvent;
 import com.backend.mlopsbackend.Services.RequestService;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalTime;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +40,7 @@ public class ModelScoringService {
     @Autowired
     private UserService userService;
     @Autowired
-    private ClientService clientService;
+    private ClientRepository clientRepository;
     @Autowired
     private ApplicationEventPublisher eventPublisher;
 
@@ -77,7 +75,7 @@ public class ModelScoringService {
 
 
         // Create the request object and set its prediction
-        Request req = new Request();
+        Assessment req = new Assessment();
         req.approvalTime = new Timestamp(System.currentTimeMillis());
         req.SetValuesFromMap(param);
         req.setPrediction(prediction.getBody());
@@ -86,13 +84,13 @@ public class ModelScoringService {
         user.ifPresent(value -> req.requesterId = value.id);
 
         // GetClient
-        Optional<Client> client = clientService.getClientFromDNI(dni);
+        Optional<Client> client = clientRepository.findByDni(dni);
         client.ifPresentOrElse(
                 client1 -> req.client = client1,
                 () -> {
                     Client clientNew = new Client();
                     clientNew.dni = dni;
-                    clientService.SaveClient(clientNew);
+                    clientRepository.save(clientNew);
                     req.client = clientNew;
                     req.client.dni = dni;
                 }
